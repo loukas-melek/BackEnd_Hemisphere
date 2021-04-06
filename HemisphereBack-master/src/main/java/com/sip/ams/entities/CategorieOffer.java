@@ -1,0 +1,6 @@
+package com.sip.ams.entities;
+ 
+public enum CategorieOffer {
+	INFORMATIQUE, CHIMIE, ELECTRIQUE, FINANCE, MANAGEMENT,SECURITY,COMMERCE,ENERGITIQUE,MECANIQUE,OTHER;
+}
+  
