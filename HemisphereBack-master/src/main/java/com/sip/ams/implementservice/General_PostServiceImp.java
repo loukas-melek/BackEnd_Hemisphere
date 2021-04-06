@@ -38,7 +38,7 @@ public class General_PostServiceImp implements General_PostService {
 			updatedPub.setNlike(offer.getNlike());
 			updatedPub.setPost(offer.getPost());
 			updatedPub.setAffichedate(offer.getAffichedate());
-			updatedPub.setComment(offer.getComment());
+			
 			updatedPub.setCreated_at(offer.getCreated_at());
 			updatedPub.setUpdated_at(offer.getUpdated_at());
 			updatedPub.setProfile(offer.getProfile());
