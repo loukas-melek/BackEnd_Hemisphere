@@ -14,7 +14,6 @@ import com.sip.ams.repositories.ProfileRepository;
 import com.sip.ams.entities.General_Post;
 import com.sip.ams.entities.Post;
 import com.sip.ams.repositories.General_PostRepository;
-import com.sip.ams.repositories.UserRepository;
 import com.sip.ams.services.PostService;
 @Service
 public class PostServiceImp implements PostService {

@@ -14,7 +14,6 @@ import com.sip.ams.repositories.General_PostRepository;
 import com.sip.ams.repositories.ProfileRepository;
 import com.sip.ams.repositories.SharedPostRepository;
 
-import com.sip.ams.repositories.UserRepository;
 import com.sip.ams.services.SharedPostService;
 @Service
 public class SharedPostServiceImp implements SharedPostService {
