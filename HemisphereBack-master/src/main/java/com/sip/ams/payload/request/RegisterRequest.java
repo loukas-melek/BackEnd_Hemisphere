@@ -6,6 +6,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.sip.ams.entities.Role;
+
 public class RegisterRequest {
 	 @NotBlank
 	    @Size(min = 3, max = 20)
@@ -16,7 +18,7 @@ public class RegisterRequest {
 	    @Email
 	    private String email;
 	    
-	    private Set<String> role;
+	    private String roles;
 	    
 	    @NotBlank
 	    @Size(min = 6, max = 40)
@@ -45,12 +47,14 @@ public class RegisterRequest {
 	    public void setPassword(String password) {
 	        this.password = password;
 	    }
+
+		public String getRoles() {
+			return roles;
+		}
+
+		public void setRoles(String roles) {
+			this.roles = roles;
+		}
 	    
-	    public Set<String> getRole() {
-	      return this.role;
-	    }
-	    
-	    public void setRole(Set<String> role) {
-	      this.role = role;
-	    }
+	   
 }

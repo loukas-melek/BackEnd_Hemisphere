@@ -37,25 +37,25 @@ public class HemisphereBackEndApplication implements CommandLineRunner{
 	    admin.setUsername("admin");
 	    admin.setPassword("admin");
 	    admin.setEmail("admin@email.com");
-	    admin.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
+	    //admin.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
 
-	    userService.signup(admin);
+	    userService.signup(admin,"admin");
 
 	    User sUser = new User();
 	    sUser.setUsername("suser");
 	    sUser.setPassword("suser");
 	    sUser.setEmail("suser@email.com");
-	    sUser.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_USER)));
+	    //sUser.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STUDENT)));
 
-	    userService.signup(sUser);
+	    userService.signup(sUser,"student");
 	    
 	    User pUser = new User();
 	    pUser.setUsername("puser");
 	    pUser.setPassword("puser");
 	    pUser.setEmail("puser@email.com");
-	    pUser.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_PREMIUM_USER)));
+	    //pUser.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_COMPANY)));
 
-	    userService.signup(pUser);
+	    userService.signup(pUser,"company");
 		
 	}
 

@@ -1,5 +1,8 @@
 package com.sip.ams.services;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sip.ams.entities.Role;
 import com.sip.ams.entities.User;
 import com.sip.ams.exception.CustomException;
 import com.sip.ams.repositories.UserRepository;
@@ -44,9 +48,19 @@ public class UserService {
     }
   }
 
-  public String signup(User user) {
+  public String signup(User user,String role) {
     if (!userRepository.existsByUsername(user.getUsername())) {
+    	System.out.println(role);
       user.setPassword(passwordEncoder.encode(user.getPassword()));
+      if(role.equals("student")) {
+      user.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STUDENT)));
+      }else if(role.equals("company")) {
+    	  user.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_COMPANY)));
+      }else if (role.equals("admin")) {
+    	  user.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
+      }
+      System.out.println(user.getRoles());
+      System.out.println(user.getUsername());
       userRepository.save(user);
       return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
     } else {

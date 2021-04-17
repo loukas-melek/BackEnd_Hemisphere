@@ -21,6 +21,7 @@ import com.sip.ams.dto.UserDataDTO;
 import com.sip.ams.dto.UserResponseDTO;
 import com.sip.ams.entities.User;
 import com.sip.ams.payload.request.LoginRequest;
+import com.sip.ams.payload.request.RegisterRequest;
 import com.sip.ams.services.UserService;
 
 import io.swagger.annotations.Api;
@@ -61,8 +62,11 @@ public class UserController {
       @ApiResponse(code = 400, message = "Something went wrong"), //
       @ApiResponse(code = 403, message = "Access denied"), //
       @ApiResponse(code = 422, message = "Username is already in use")})
-  public String signup(@ApiParam("Signup User") @RequestBody UserDataDTO user) {
-    return userService.signup(modelMapper.map(user, User.class));
+  public String signup(@ApiParam("Signup User") @RequestBody RegisterRequest user) {
+	  System.out.println(user.getUsername());
+	  System.out.println(user.getRoles());
+    return userService.signup(modelMapper.map(user, User.class),user.getRoles());
+	  //return userService.signup(user);
   }
 
   @DeleteMapping(value = "/{username}")
