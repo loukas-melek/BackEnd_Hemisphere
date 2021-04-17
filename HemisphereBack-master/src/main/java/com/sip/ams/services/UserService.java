@@ -33,6 +33,9 @@ public class UserService {
   private AuthenticationManager authenticationManager;
 
   public String signin(String username, String password) {
+	  System.out.println("we are in the login service please work");
+	  System.out.println(username);
+	  System.out.println(password);
     try {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
       return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRoles());

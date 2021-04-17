@@ -1,10 +1,13 @@
 package com.sip.ams.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sip.ams.dto.UserDataDTO;
 import com.sip.ams.dto.UserResponseDTO;
 import com.sip.ams.entities.User;
+import com.sip.ams.payload.request.LoginRequest;
 import com.sip.ams.services.UserService;
 
 import io.swagger.annotations.Api;
@@ -29,6 +33,7 @@ import io.swagger.annotations.Authorization;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin
 @Api(tags = "users")
 public class UserController {
 
@@ -41,12 +46,13 @@ public class UserController {
   @PostMapping("/signin")
   @ApiOperation(value = "${UserController.signin}")
   @ApiResponses(value = {//
-      @ApiResponse(code = 400, message = "Something went wrong"), //
-      @ApiResponse(code = 422, message = "Invalid username/password supplied")})
+		  @ApiResponse(code = 400, message = "Something went wrong"), //	  
+		  @ApiResponse(code = 422, message = "Invalid username/password supplied")})	 
   public String login(//
-      @ApiParam("Username") @RequestParam String username, //
-      @ApiParam("Password") @RequestParam String password) {
-    return userService.signin(username, password);
+		  @Valid @RequestBody LoginRequest loginRequest) {
+	  System.out.println("nchoufou el token kifeh");
+	  System.out.println(userService.signin(loginRequest.getUsername(),loginRequest.getPassword()));
+    return userService.signin(loginRequest.getUsername(),loginRequest.getPassword());
   }
 
   @PostMapping("/signup")
