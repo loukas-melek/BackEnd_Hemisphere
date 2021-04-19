@@ -48,8 +48,12 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 		 Date d=new Date();
 		 p.setCreated_at(d);
 		 p.setUpdated_at(d); 
-		 p.setOffer(offer);
+		 p.setOffertasksolution(offer);
 		p.setProfile(profileRepository.getOne(userid));
+		System.out.println(p.getCreated_at());
+		System.out.println(p.getProfile());
+		System.out.println(p.getOffertasksolution());
+		
 		 
 		general_PostRepository.save(p);
 

@@ -18,7 +18,7 @@ public class General_Post extends AuditModel {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private Long id;
+	private Long id;	
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_profile", nullable = true) // clé étrangère
@@ -44,7 +44,7 @@ public class General_Post extends AuditModel {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "offer_task_solution_id", nullable = true) // clé étrangère
-	private Offer_Task_Solution offer;
+	private Offer_Task_Solution offertasksolution;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_post", nullable = true, columnDefinition = "bigint default 0") // clé étrangère
@@ -98,12 +98,14 @@ public class General_Post extends AuditModel {
 		this.sharedpost = sharedpost;
 	}
 
-	public Offer_Task_Solution getOffer() {
-		return offer;
+	
+
+	public Offer_Task_Solution getOffertasksolution() {
+		return offertasksolution;
 	}
 
-	public void setOffer(Offer_Task_Solution offer) {
-		this.offer = offer;
+	public void setOffertasksolution(Offer_Task_Solution offertasksolution) {
+		this.offertasksolution = offertasksolution;
 	}
 
 	public Post getPost() {

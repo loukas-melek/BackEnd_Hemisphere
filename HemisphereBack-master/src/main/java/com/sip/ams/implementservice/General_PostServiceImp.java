@@ -34,7 +34,7 @@ public class General_PostServiceImp implements General_PostService {
 		// TODO Auto-generated method stub
 		General_Post updatedPub=general_PostRepository.findPubById(id);
 		if(updatedPub!=null) {
-			updatedPub.setOffer(offer.getOffer());
+			updatedPub.setOffertasksolution(offer.getOffertasksolution());
 			updatedPub.setNlike(offer.getNlike());
 			updatedPub.setPost(offer.getPost());
 			updatedPub.setAffichedate(offer.getAffichedate());

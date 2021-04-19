@@ -22,13 +22,13 @@ public interface General_PostRepository extends JpaRepository<General_Post, Long
 	public General_Post findPubById(@Param("id")Long id);
 	 
 	
-	@Query (value= "select * from pub WHERE pub.id_user= :user_id", nativeQuery= true )
+	@Query (value= "select * from General_Post WHERE General_Post.id_user= :user_id", nativeQuery= true )
 	public List<General_Post> getPubByUserId(@Param("user_id") Long user_id);
 	
-	@Query (value= "select * from pub WHERE pub.id_user= :user_id", nativeQuery= true )
+	@Query (value= "select * from General_Post WHERE General_Post.id_user= :user_id", nativeQuery= true )
 	public List<General_Post> getPubByReact(@Param("user_id") Long user_id);
 	
-	 @Query(value="select * from pub ORDER BY created_at DESC",nativeQuery=true) 
+	 @Query(value="select * from General_Post ORDER BY created_at DESC",nativeQuery=true) 
 	 public List<General_Post> listerAll();
 	
 	 
