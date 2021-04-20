@@ -24,8 +24,20 @@ public class Profile extends AuditModel {
 		@Column(name = "about")
 		private String about;
 		
+		@Column(name = "name")
+	    private String name;
+		
+		@Column(name = "lastname")
+	    private String lastname;
+		
+		@Column(name = "phone")
+	    private String phone;
+		
+		@Column(name = "city")
+	    private String city;
+		
 		@Column(name = "profilePicUrl")
-	    private String profilePicUrl;
+	    private String profilePicUrl;	
 		
 		@Column(name = "gender")
 	    private boolean gender;
@@ -45,6 +57,38 @@ public class Profile extends AuditModel {
 		private User user;
 		
 		
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getLastname() {
+			return lastname;
+		}
+
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
+
+		public String getPhone() {
+			return phone;
+		}
+
+		public void setPhone(String phone) {
+			this.phone = phone;
+		}
+
+		public String getCity() {
+			return city;
+		}
+
+		public void setCity(String city) {
+			this.city = city;
+		}
 
 		public Long getId() {
 			return id;

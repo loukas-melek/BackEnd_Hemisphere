@@ -22,7 +22,7 @@ public interface General_PostRepository extends JpaRepository<General_Post, Long
 	public General_Post findPubById(@Param("id")Long id);
 	 
 	
-	@Query (value= "select * from General_Post WHERE General_Post.id_user= :user_id", nativeQuery= true )
+	@Query (value= "select * from General_Post WHERE General_Post.id_profile= :user_id", nativeQuery= true )
 	public List<General_Post> getPubByUserId(@Param("user_id") Long user_id);
 	
 	@Query (value= "select * from General_Post WHERE General_Post.id_user= :user_id", nativeQuery= true )
