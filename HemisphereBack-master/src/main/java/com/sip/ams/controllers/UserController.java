@@ -1,5 +1,8 @@
 package com.sip.ams.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sip.ams.dto.UserDataDTO;
 import com.sip.ams.dto.UserResponseDTO;
+import com.sip.ams.entities.Profile;
+import com.sip.ams.entities.Role;
 import com.sip.ams.entities.User;
 import com.sip.ams.payload.request.LoginRequest;
 import com.sip.ams.payload.request.RegisterRequest;
@@ -65,7 +70,33 @@ public class UserController {
   public String signup(@ApiParam("Signup User") @RequestBody RegisterRequest user) {
 	  System.out.println(user.getUsername());
 	  System.out.println(user.getRoles());
-    return userService.signup(modelMapper.map(user, User.class),user.getRoles());
+	  User u = new User();
+	  Profile p = new Profile();
+	  u.setEmail(user.getEmail());
+	  u.setPassword(user.getPassword());
+	  u.setUsername(user.getUsername());
+	  Integer r =user.getRoles();
+	  if(r==1) {
+		  System.out.println("dkhalna lel if aal role student");
+		  List<Role> role = new ArrayList();
+		  role.add(Role.ROLE_STUDENT);
+		  u.setRoles(role);
+		  System.out.println(role);
+	  }
+	  if(r==3) {
+		  System.out.println("dkhalna lel if aal role company");
+		  List<Role> role =  new ArrayList();
+		  role.add(Role.ROLE_COMPANY);
+		  u.setRoles(role);
+		  System.out.println(role);
+	  }
+	  p.setName(user.getName());
+	  p.setLastname(user.getLastname());
+	  p.setPhone(user.getPhone());
+	  p.setCity(user.getCity());
+	  p.setLocation(user.getLocation());
+	  p.setGender(user.isGender());
+    return userService.signup(u,p);
 	  //return userService.signup(user);
   }
 

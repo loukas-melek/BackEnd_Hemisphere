@@ -1,5 +1,6 @@
 package com.sip.ams.payload.request;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.Email;
@@ -18,13 +19,78 @@ public class RegisterRequest {
 	    @Email
 	    private String email;
 	    
-	    private String roles;
-	    
+	    private Integer roles;
+	    private String name;
+	    private String lastname;
+	    private String phone;
+	    private String location;
+	    private String city;
+	    private boolean gender;
 	    @NotBlank
 	    @Size(min = 6, max = 40)
 	    private String password;
 	  
-	    public String getUsername() {
+	    
+	    
+	    
+
+		public Integer getRoles() {
+			return roles;
+		}
+
+		public void setRoles(Integer roles) {
+			this.roles = roles;
+		}
+
+		public boolean isGender() {
+			return gender;
+		}
+
+		public void setGender(boolean gender) {
+			this.gender = gender;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getLastname() {
+			return lastname;
+		}
+
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
+
+		public String getPhone() {
+			return phone;
+		}
+
+		public void setPhone(String phone) {
+			this.phone = phone;
+		}
+
+		public String getLocation() {
+			return location;
+		}
+
+		public void setLocation(String location) {
+			this.location = location;
+		}
+
+		public String getCity() {
+			return city;
+		}
+
+		public void setCity(String city) {
+			this.city = city;
+		}
+
+		public String getUsername() {
 	        return username;
 	    }
 	 
@@ -48,13 +114,7 @@ public class RegisterRequest {
 	        this.password = password;
 	    }
 
-		public String getRoles() {
-			return roles;
-		}
-
-		public void setRoles(String roles) {
-			this.roles = roles;
-		}
+		
 	    
 	   
 }

@@ -2,6 +2,7 @@ package com.sip.ams.services;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,9 +14,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sip.ams.entities.Profile;
 import com.sip.ams.entities.Role;
 import com.sip.ams.entities.User;
 import com.sip.ams.exception.CustomException;
+import com.sip.ams.repositories.ProfileRepository;
 import com.sip.ams.repositories.UserRepository;
 import com.sip.ams.security.JwtTokenProvider;
 
@@ -26,7 +29,8 @@ public class UserService {
 
   @Autowired
   private UserRepository userRepository;
-
+  @Autowired
+  private ProfileRepository profileRepository;
   @Autowired
   private PasswordEncoder passwordEncoder;
 
@@ -48,20 +52,20 @@ public class UserService {
     }
   }
 
-  public String signup(User user,String role) {
+  public String signup(User user,Profile profile) {
     if (!userRepository.existsByUsername(user.getUsername())) {
-    	System.out.println(role);
-      user.setPassword(passwordEncoder.encode(user.getPassword()));
-      if(role.equals("student")) {
-      user.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STUDENT)));
-      }else if(role.equals("company")) {
-    	  user.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_COMPANY)));
-      }else if (role.equals("admin")) {
-    	  user.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
-      }
+    	 User u = new User();
+    	u.setEmail(user.getEmail());
+    	u.setRoles(user.getRoles());
+    	u.setUsername(user.getUsername());
+      u.setPassword(passwordEncoder.encode(user.getPassword()));
       System.out.println(user.getRoles());
       System.out.println(user.getUsername());
-      userRepository.save(user);
+      userRepository.save(u);
+      profile.setCreated_at(new Date());
+      profile.setUpdated_at(new Date());
+      profile.setUser(u);
+      profileRepository.save(profile);
       return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
     } else {
       throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
