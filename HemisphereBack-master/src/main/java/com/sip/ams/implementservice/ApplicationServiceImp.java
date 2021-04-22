@@ -42,7 +42,7 @@ public class ApplicationServiceImp implements ApplicationService {
 			oldDemande.setCreated_at(demande.getCreated_at());
 			oldDemande.setUpdated_at(demande.getUpdated_at());
 			oldDemande.setMotivation(demande.getMotivation());
-			oldDemande.setOffer(demande.getOffer());
+			oldDemande.setOffer_Task_Solution(demande.getOffer_Task_Solution());
 			oldDemande.setBidprice(demande.getBidprice());
 			oldDemande.setDeliverytime(demande.getDeliverytime());
 			applicationRepository.save(oldDemande);

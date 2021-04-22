@@ -32,6 +32,9 @@ public class Application extends AuditModel {
 
 	@Column(name = "deliverytime")
 	private String deliverytime;
+	
+	@Column(name = "isvalide")
+	private boolean isvalide;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_profile", nullable = true) // clé étrangère
@@ -41,7 +44,7 @@ public class Application extends AuditModel {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "offer_task_solution_id", nullable = true) // clé étrangère
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Offer_Task_Solution offer;
+	private Offer_Task_Solution offer_Task_Solution;
 
 	public int getBidprice() {
 		return bidprice;
@@ -59,12 +62,14 @@ public class Application extends AuditModel {
 		this.deliverytime = deliverytime;
 	}
 
-	public Offer_Task_Solution getOffer() {
-		return offer;
+	
+
+	public Offer_Task_Solution getOffer_Task_Solution() {
+		return offer_Task_Solution;
 	}
 
-	public void setOffer(Offer_Task_Solution offer) {
-		this.offer = offer;
+	public void setOffer_Task_Solution(Offer_Task_Solution offer_Task_Solution) {
+		this.offer_Task_Solution = offer_Task_Solution;
 	}
 
 	public String getMotivation() {
