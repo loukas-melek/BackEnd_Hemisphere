@@ -2,15 +2,21 @@ package com.sip.ams.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -59,6 +65,23 @@ public class Project extends AuditModel{
 		@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	    @JoinColumn(name = "profile_id", nullable = false)
 	    private Profile profile;
+
+	
+	/*
+	 * @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST,
+	 * CascadeType.MERGE })
+	 * 
+	 * @JoinTable(name = "project_sprints", joinColumns = { @JoinColumn(name =
+	 * "project_id") }, inverseJoinColumns = { @JoinColumn(name = "sprint_id") })
+	 * private Set<Sprint> sprints = new HashSet<>();
+	 */
+	 
+		
+		
+		
+
+	
+		
 
 		public Project(){}
 		

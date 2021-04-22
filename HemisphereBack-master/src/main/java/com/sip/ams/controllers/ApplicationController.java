@@ -38,17 +38,14 @@ public class ApplicationController {
 	 public List<Application> getDemandesByOfferId(@PathVariable Long offerId) {
 	 return applicationService.getDemandeByOfferId(offerId);
 	 }
-	@GetMapping("/list/task/{taskId}")
-	 public List<Application> getDemandesByTaskId(@PathVariable Long taskId) {
-	 return applicationService.getDemandeByTaskId(taskId);
-	 }
+	
 	@PostMapping("/add")
 	 public void createDemande( @RequestBody Application demande) {
 	  applicationService.addDemande(demande);
 	 }
 	
 	@PutMapping("update/{demandeId}")
-	 public Application updateDemande(@PathVariable int demandeId, @Valid
+	 public Application updateDemande(@PathVariable Long demandeId, @Valid
 	@RequestBody Application dRequest) {
 		 return applicationService.updateDemande(demandeId, dRequest);
 			 }

@@ -1,15 +1,22 @@
 package com.sip.ams.entities;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,15 +42,55 @@ public class Sprint {
 	@Column(nullable = true)
 	private Integer sprint_type ;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
-   // @OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
-    private Project project;
+	@Column(name = "sprint_status")
+	@Enumerated(EnumType.STRING)
+	private Status status;
+	
+	  public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	/*
+	 * @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST,
+	 * CascadeType.MERGE }, mappedBy = "sprints") private Set<Project> projects =
+	 * new HashSet<>();
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_project", nullable = true) // clé étrangère
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Project project;
+
+	 
+	/*
+	 * @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST,
+	 * CascadeType.MERGE })
+	 * 
+	 * @JoinTable(name = "sprints_tasks", joinColumns = { @JoinColumn(name =
+	 * "sprint_id") }, inverseJoinColumns = { @JoinColumn(name = "task_id") })
+	 * private Set<Sprint_Tasks> tasks = new HashSet<>();
+	 */
+	
 	
 	@Column(nullable = true)
 	private String description ;
 	
+	
+	
+	
+
+	
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
 	public Sprint(){}
 	
 	public Sprint(Long sprint_id, LocalDateTime start_date, LocalDateTime end_date, Integer sprint_type,
@@ -53,9 +100,10 @@ public class Sprint {
 		this.start_date = start_date;
 		this.end_date = end_date;
 		this.sprint_type = sprint_type;
-		this.project = project;
 		this.description = description;
 	}
+
+	
 
 	public Long getSprint_id() {
 		return sprint_id;
@@ -89,14 +137,11 @@ public class Sprint {
 		this.sprint_type = sprint_type;
 	}
 
-	public Project getProject() {
-		return project;
-	}
+	
 
-	public void setProject(Project project) {
-		this.project = project;
-	}
+	
 
+	
 	public String getDescription() {
 		return description;
 	}
@@ -105,11 +150,6 @@ public class Sprint {
 		this.description = description;
 	}
 
-	@Override
-	public String toString() {
-		return "Sprint [sprint_id=" + sprint_id + ", start_date=" + start_date + ", end_date=" + end_date
-				+ ", sprint_type=" + sprint_type + ", project=" + project + ", description=" + description + "]";
-	}
 	
 	
 	

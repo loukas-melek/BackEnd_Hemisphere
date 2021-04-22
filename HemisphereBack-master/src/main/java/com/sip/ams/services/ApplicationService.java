@@ -16,5 +16,5 @@ public interface ApplicationService {
 	void deleteDemande(long id);
 	public List<Application> getDemandeByUserId(Long user_id);
 	public List<Application> getDemandeByOfferId(Long offer_id);
-	public List<Application> getDemandeByTaskId(Long task_id);
+	
 }

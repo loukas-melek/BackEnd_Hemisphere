@@ -1,5 +1,6 @@
 package com.sip.ams.implementservice;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,9 @@ public class ApplicationServiceImp implements ApplicationService {
 		 * d.setOffer(demande.getOffer()); d.setUser(demande.getUser());
 		 * d.setDate(demande.getDate()); d.setMotivation(demande.getMotivation());
 		 */
+		System.out.println(demande.getMotivation());
+		demande.setCreated_at(new Date());
+		demande.setUpdated_at(new Date());
 		applicationRepository.save(demande);
 
 	}
@@ -68,11 +72,7 @@ public class ApplicationServiceImp implements ApplicationService {
 		return applicationRepository.getDemandeByOfferId(offer_id);
 	}
 
-	@Override
-	public List<Application> getDemandeByTaskId(Long task_id) {
-		// TODO Auto-generated method stub
-		return applicationRepository.getDemandeByTaskId(task_id);
-	}
+	
 
 
 }
