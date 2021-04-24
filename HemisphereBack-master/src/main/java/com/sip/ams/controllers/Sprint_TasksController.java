@@ -37,7 +37,11 @@ public class Sprint_TasksController {
 	{
         return new ResponseEntity<>(sprint_tasks_service.getSprint_TaskstById(task_id), HttpStatus.OK);
 	}
-	
+	@GetMapping("task/{sprint_id}")  
+	public List<Sprint_Tasks> getTasksBysprintId(@PathVariable Long sprint_id) 
+	{
+        return sprint_tasks_service.getTasksbySprint(sprint_id);
+	}
 	@DeleteMapping("/{task_id}")  
 	public ResponseEntity<Sprint_Tasks> delete(@PathVariable("task_id") Long task_id) 
 	{

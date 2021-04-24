@@ -33,6 +33,7 @@ public class ApplicationServiceImp implements ApplicationService {
 		System.out.println(demande.getMotivation());
 		demande.setCreated_at(new Date());
 		demande.setUpdated_at(new Date());
+		demande.setStatus(0);
 		applicationRepository.save(demande);
 
 	}
@@ -49,6 +50,7 @@ public class ApplicationServiceImp implements ApplicationService {
 			oldDemande.setOffer_Task_Solution(demande.getOffer_Task_Solution());
 			oldDemande.setBidprice(demande.getBidprice());
 			oldDemande.setDeliverytime(demande.getDeliverytime());
+			oldDemande.setStatus(demande.getStatus());
 			applicationRepository.save(oldDemande);
 		}
 		return oldDemande;
@@ -70,6 +72,16 @@ public class ApplicationServiceImp implements ApplicationService {
 	public List<Application> getDemandeByOfferId(Long offer_id) {
 
 		return applicationRepository.getDemandeByOfferId(offer_id);
+	}
+
+	@Override
+	public boolean treatDemande(Long id,int status) {
+	Application app=applicationRepository.getOne(id);
+	System.out.println(status);
+	app.setStatus(status);
+	System.out.println(app.getStatus());
+	applicationRepository.save(app);
+		return true;
 	}
 
 	

@@ -30,7 +30,7 @@ public class PubController {
 	private General_PostService general_PostService;
 	@GetMapping("/list")
 	 public List<General_Post> getAllPubs() {
-	 return (List<General_Post>) general_PostService.listerAll();
+	 return (List<General_Post>) general_PostService.listerPubs();
 	 }
 
 	

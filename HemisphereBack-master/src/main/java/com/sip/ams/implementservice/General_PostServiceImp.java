@@ -20,7 +20,7 @@ public class General_PostServiceImp implements General_PostService {
 	@Override
 	public List<General_Post> listerPubs() {
 		// TODO Auto-generated method stub
-		return general_PostRepository.findAll();
+		return general_PostRepository.listerAll();
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class General_PostServiceImp implements General_PostService {
 			updatedPub.setNlike(offer.getNlike());
 			updatedPub.setPost(offer.getPost());
 			updatedPub.setAffichedate(offer.getAffichedate());
-			
+			updatedPub.setArchived(offer.isArchived());
 			updatedPub.setCreated_at(offer.getCreated_at());
 			updatedPub.setUpdated_at(offer.getUpdated_at());
 			updatedPub.setProfile(offer.getProfile());
@@ -51,7 +51,9 @@ public class General_PostServiceImp implements General_PostService {
 	@Override
 	public void deletePub(Long id) {
 		// TODO Auto-generated method stub
-		general_PostRepository.deleteById(id);
+		General_Post p = general_PostRepository.getOne(id);
+		p.setArchived(true);
+		general_PostRepository.save(p);
 	}
 
 	@Override

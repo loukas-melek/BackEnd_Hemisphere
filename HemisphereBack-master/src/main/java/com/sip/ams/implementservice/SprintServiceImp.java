@@ -51,4 +51,10 @@ public class SprintServiceImp implements SprintService {
 		
 	}
 
+	@Override
+	public List<Sprint> getSprintsByproject(Long project_id) {
+		// TODO Auto-generated method stub
+		return sprintrepository.getSprintsByproject(project_id);
+	}
+
 }

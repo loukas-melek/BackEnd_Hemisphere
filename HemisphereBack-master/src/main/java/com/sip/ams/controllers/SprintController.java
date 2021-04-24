@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sip.ams.entities.Project;
 import com.sip.ams.entities.Sprint;
+import com.sip.ams.entities.Sprint_Tasks;
 import com.sip.ams.services.SprintService;
 
 @RestController  
@@ -44,6 +45,11 @@ public class SprintController {
 	{
 		sprintservice.delete(sprint_id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	@GetMapping("sprint/{project_id}")  
+	public List<Sprint> getTasksBysprintId(@PathVariable Long project_id) 
+	{
+        return sprintservice.getSprintsByproject(project_id);
 	}
 	
 	@PostMapping

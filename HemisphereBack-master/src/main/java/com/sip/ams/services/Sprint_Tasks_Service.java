@@ -2,6 +2,7 @@ package com.sip.ams.services;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.sip.ams.entities.Sprint;
@@ -17,4 +18,5 @@ public interface Sprint_Tasks_Service {
 	Sprint_Tasks insert(Sprint_Tasks sprint_tasks);
 	void saveOrUpdate(Sprint_Tasks sprint_tasks,long task_id);
 	void delete(long task_id);
+	public List<Sprint_Tasks> getTasksbySprint(Long user_id);
 }

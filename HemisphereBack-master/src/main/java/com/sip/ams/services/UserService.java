@@ -65,6 +65,7 @@ public class UserService {
       profile.setCreated_at(new Date());
       profile.setUpdated_at(new Date());
       profile.setUser(u);
+      profile.setEmail(user.getEmail());
       profileRepository.save(profile);
       return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
     } else {
@@ -91,5 +92,26 @@ public class UserService {
   public String refresh(String username) {
     return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRoles());
   }
-
+  public User updateUser(Integer id,User user) {
+	  User u = userRepository.getOne(id);
+	  if(u!=null) {
+	  u.setEmail(user.getEmail());
+	  u.setPassword(passwordEncoder.encode(user.getPassword()));
+	  u.setUsername(user.getUsername());
+	  }
+	return userRepository.save(u);
+	  
+  }
+  
+  public boolean checkPassword(String password,Integer id) {
+	 
+	  User u=userRepository.getOne(id);
+	  System.out.println(u.getPassword());
+	  System.out.println(password);
+	  password.toString();
+	  boolean isPasswordMatch = passwordEncoder.matches(password, u.getPassword());
+	  System.out.println(isPasswordMatch);
+	  return isPasswordMatch;
+  
+  }
 }

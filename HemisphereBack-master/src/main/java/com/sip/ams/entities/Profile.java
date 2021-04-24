@@ -44,6 +44,9 @@ public class Profile extends AuditModel {
 		
 		@Column(name = "location")
 	    private String location;
+		
+		@Column(name = "email")
+	    private String email;
 
 		@Column(name = "interests")
 	    private String interests;
@@ -51,12 +54,31 @@ public class Profile extends AuditModel {
 		@Column(name = "languages")
 	    private String languages;
 
+		@Column(name = "state")
+	    private String state;
+		
 		@JsonBackReference
 		@OneToOne(fetch = FetchType.LAZY, optional = false)
 		@JoinColumn(name = "user_id", nullable = false)
 		private User user;
 		
 		
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public String getState() {
+			return state;
+		}
+
+		public void setState(String state) {
+			this.state = state;
+		}
 
 		public String getName() {
 			return name;

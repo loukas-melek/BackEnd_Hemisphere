@@ -44,6 +44,7 @@ public class ProfileServiceImp implements ProfileService {
 		p.setPhone(profile.getPhone());
 		p.setName(profile.getName());
 		p.setLastname(profile.getLastname());
+		p.setState(profile.getState());
 		}
 		profileRepository.save(p);
 		return p;

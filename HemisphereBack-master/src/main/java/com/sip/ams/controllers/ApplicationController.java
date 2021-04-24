@@ -34,7 +34,7 @@ public class ApplicationController {
 	 public List<Application> getDemandesByUserId(@PathVariable Long userId) {
 	 return applicationService.getDemandeByUserId(userId);
 	 }
-	@GetMapping("/list/offer/{offerId}")
+	@GetMapping("/list/{offerId}")
 	 public List<Application> getDemandesByOfferId(@PathVariable Long offerId) {
 	 return applicationService.getDemandeByOfferId(offerId);
 	 }
@@ -53,4 +53,12 @@ public class ApplicationController {
 	 public void deleteOffer(@PathVariable int demandeId) {
 	 applicationService.deleteDemande(demandeId);
 	 }
+	 
+	 @PostMapping("/treat/{demandeId}")
+	  public boolean checkPass(@PathVariable Long demandeId, @Valid
+				@RequestBody int status) {
+		  System.out.println(demandeId);
+		  System.out.println(status);
+	    return applicationService.treatDemande(demandeId, status);
+	  }
 }

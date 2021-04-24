@@ -33,8 +33,8 @@ public class Application extends AuditModel {
 	@Column(name = "deliverytime")
 	private String deliverytime;
 	
-	@Column(name = "isvalide")
-	private boolean isvalide;
+	@Column(name = "status")
+	private int status;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_profile", nullable = true) // clé étrangère
@@ -70,6 +70,14 @@ public class Application extends AuditModel {
 
 	public void setOffer_Task_Solution(Offer_Task_Solution offer_Task_Solution) {
 		this.offer_Task_Solution = offer_Task_Solution;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public String getMotivation() {

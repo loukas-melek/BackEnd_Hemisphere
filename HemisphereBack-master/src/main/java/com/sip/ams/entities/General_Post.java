@@ -33,6 +33,9 @@ public class General_Post extends AuditModel {
 
 	@Column(name = "nshare")
 	private int nshare;
+	
+	@Column(name = "archived")
+	private boolean archived;
 
 	@Column(name = "affichedate")
 	private String affichedate;
@@ -62,6 +65,14 @@ public class General_Post extends AuditModel {
 
 	public void setAffichedate(String affichedate) {
 		this.affichedate = affichedate;
+	}
+
+	public boolean isArchived() {
+		return archived;
+	}
+
+	public void setArchived(boolean archived) {
+		this.archived = archived;
 	}
 
 	public int getNcomment() {

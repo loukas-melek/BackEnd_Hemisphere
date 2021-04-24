@@ -52,4 +52,10 @@ public class Sprint_TasksServiceImp implements Sprint_Tasks_Service {
 		
 	}
 
+	@Override
+	public List<Sprint_Tasks> getTasksbySprint(Long user_id) {
+		// TODO Auto-generated method stub
+		return sprint_tasksRepository.getTasksbySprint(user_id);
+	}
+
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -142,4 +143,20 @@ public class UserController {
     return userService.refresh(req.getRemoteUser());
   }
 
+  @PostMapping("/check/{userId}")
+  public boolean checkPass(@PathVariable Integer userId, @Valid
+			@RequestBody String password) {
+	  System.out.println(userId);
+	  System.out.println(password);
+    return userService.checkPassword(password, userId);
+  }
+  
+  @PutMapping("update/{userId}")
+  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_STUDENT') or hasRole('ROLE_COMPANY')")
+	 public User updateUser(@PathVariable Integer userId, @Valid
+	@RequestBody User user) {
+	  
+		 return userService.updateUser(userId, user);
+			 }
+  
 }
