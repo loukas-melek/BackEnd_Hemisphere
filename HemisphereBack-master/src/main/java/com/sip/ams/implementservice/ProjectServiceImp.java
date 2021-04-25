@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sip.ams.converts.ProjectConverter;
+import com.sip.ams.dto.ProjectDto;
 import com.sip.ams.entities.Project;
 import com.sip.ams.repositories.ProfileRepository;
 import com.sip.ams.repositories.ProjectRepository;
@@ -18,12 +20,14 @@ public class ProjectServiceImp implements ProjectService{
 	@Autowired  
 	ProfileRepository profilerepository;
 	
+	@Autowired
+	private ProjectConverter converter;
 	
 	@Override
-	public List<Project> getAllProjects() {
+	public List<ProjectDto> getAllProjects() {
 		List<Project> pro = new ArrayList<>();
-		projectrepository.findAll().forEach(pro::add);
-        return pro;
+		pro = projectrepository.findAll();
+        return converter.convertListProjectToDto(pro);
 	}
 
 	@Override

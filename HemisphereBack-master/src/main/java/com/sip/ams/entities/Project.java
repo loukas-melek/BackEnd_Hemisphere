@@ -2,6 +2,7 @@ package com.sip.ams.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,14 +68,10 @@ public class Project extends AuditModel{
 	    private Profile profile;
 
 	
-	/*
-	 * @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST,
-	 * CascadeType.MERGE })
-	 * 
-	 * @JoinTable(name = "project_sprints", joinColumns = { @JoinColumn(name =
-	 * "project_id") }, inverseJoinColumns = { @JoinColumn(name = "sprint_id") })
-	 * private Set<Sprint> sprints = new HashSet<>();
-	 */
+	
+	  @OneToMany(mappedBy="project", cascade = CascadeType.ALL, orphanRemoval = true)
+	  private Collection<Sprint> sprints;
+	 
 	 
 		
 		
@@ -85,9 +82,11 @@ public class Project extends AuditModel{
 
 		public Project(){}
 		
+		
+
 		public Project(Long project_id, LocalDateTime start_date, LocalDateTime end_date, String title,
 				String image_path, Integer is_active, String description, Integer project_category_id,
-				CategorieOffer project_category, Profile profile) {
+				CategorieOffer project_category, Profile profile, List<Sprint> sprints) {
 			super();
 			this.project_id = project_id;
 			this.start_date = start_date;
@@ -99,7 +98,10 @@ public class Project extends AuditModel{
 			this.project_category_id = project_category_id;
 			this.project_category = project_category;
 			this.profile = profile;
+			this.sprints = sprints;
 		}
+
+
 
 		public Long getProject_id() {
 			return project_id;
@@ -187,6 +189,14 @@ public class Project extends AuditModel{
 					+ ", title=" + title + ", image_path=" + image_path + ", is_active=" + is_active + ", description="
 					+ description + ", project_category_id=" + project_category_id + ", project_category="
 					+ project_category + ", profile=" + profile + "]";
+		}
+
+		public Collection<Sprint> getSprints() {
+			return sprints;
+		}
+
+		public void setSprints(Collection<Sprint> sprints) {
+			this.sprints = sprints;
 		}
 		
 		
