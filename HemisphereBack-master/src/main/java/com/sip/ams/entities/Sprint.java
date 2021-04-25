@@ -1,6 +1,7 @@
 package com.sip.ams.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,6 +46,10 @@ public class Sprint {
 	@Column(name = "sprint_status")
 	@Enumerated(EnumType.STRING)
 	private Status status;
+	
+
+	@OneToMany(mappedBy="sprint")
+	private List<Sprint_Tasks> sprintTasks = new ArrayList<Sprint_Tasks>();
 	
 	  public Status getStatus() {
 		return status;
@@ -148,6 +153,14 @@ public class Sprint {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Sprint_Tasks> getSprintTasks() {
+		return sprintTasks;
+	}
+
+	public void setSprintTasks(List<Sprint_Tasks> sprintTasks) {
+		this.sprintTasks = sprintTasks;
 	}
 
 	

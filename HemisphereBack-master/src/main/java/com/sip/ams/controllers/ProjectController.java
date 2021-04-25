@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sip.ams.dto.ProjectDto;
 import com.sip.ams.entities.Project;
 import com.sip.ams.services.ProjectService;
 
@@ -26,10 +27,10 @@ public class ProjectController {
 	ProjectService projectservice;
 	
 	
-	@GetMapping
-	public ResponseEntity<List<Project>> getAllProjects()   
+	@GetMapping("/getall")
+	public ResponseEntity<List<ProjectDto>> getAllProjects()   
 	{  
-	List<Project> pro = projectservice.getAllProjects();
+	List<ProjectDto> pro = projectservice.getAllProjects();
 	return new ResponseEntity<>(pro, HttpStatus.OK); 
 	} 
 	

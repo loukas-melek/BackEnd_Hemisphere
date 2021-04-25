@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
@@ -57,6 +58,7 @@ public class Sprint_Tasks {
 	 * CascadeType.MERGE }, mappedBy = "tasks") private Set<Sprint> sprints = new
 	 * HashSet<>();
 	 */
+	
 	
 	public Sprint_Tasks() {
 		super();
