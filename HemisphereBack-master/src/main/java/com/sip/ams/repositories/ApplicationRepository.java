@@ -21,7 +21,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>{
 	@Query (value= "select * from Application WHERE Application.id_profile= :user_id", nativeQuery= true )
 	public List<Application> getDemandeByUserId(@Param("user_id") Long user_id);
 	
-	@Query (value= "select * from Application WHERE Application.offer_task_solution_id= :offer_id", nativeQuery= true )
+	@Query (value= "select * from Application WHERE Application.pub_id= :offer_id", nativeQuery= true )
 	public List<Application> getDemandeByOfferId(@Param("offer_id") Long offer_id);
 	
 	

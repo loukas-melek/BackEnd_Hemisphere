@@ -40,7 +40,7 @@ public class CommentController {
 	 }
 	@PostMapping("/add")
 	 public Comment createComment(@RequestBody Comment comment) {
-		System.out.println(comment.getCreated_at());
+		System.out.println(comment.getGeneral_Post().getId());
 	  return commentService.addComment(comment);
 	 }
 	

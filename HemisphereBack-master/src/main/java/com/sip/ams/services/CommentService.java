@@ -15,6 +15,7 @@ public interface CommentService {
 	void deleteComment(Long id);
 	List<Comment> listerCommentsByPub(Long id);
 	int nComments (Long idpub );
+	List<Comment>	getComments();
 
 
 }

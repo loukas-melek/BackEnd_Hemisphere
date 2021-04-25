@@ -42,9 +42,9 @@ public class Application extends AuditModel {
 	private Profile profile;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "offer_task_solution_id", nullable = true) // clé étrangère
+	@JoinColumn(name = "pub_id", nullable = true) // clé étrangère
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Offer_Task_Solution offer_Task_Solution;
+	private General_Post generalpost;
 
 	public int getBidprice() {
 		return bidprice;
@@ -64,12 +64,12 @@ public class Application extends AuditModel {
 
 	
 
-	public Offer_Task_Solution getOffer_Task_Solution() {
-		return offer_Task_Solution;
+	public General_Post getGeneralpost() {
+		return generalpost;
 	}
 
-	public void setOffer_Task_Solution(Offer_Task_Solution offer_Task_Solution) {
-		this.offer_Task_Solution = offer_Task_Solution;
+	public void setGeneralpost(General_Post generalpost) {
+		this.generalpost = generalpost;
 	}
 
 	public int getStatus() {

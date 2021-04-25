@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sip.ams.entities.General_Post;
+import com.sip.ams.entities.Offer_Task_Solution;
 import com.sip.ams.repositories.ApplicationRepository;
 import com.sip.ams.repositories.General_PostRepository;
 import com.sip.ams.services.General_PostService;
@@ -16,7 +17,8 @@ import com.sip.ams.services.General_PostService;
 public class General_PostServiceImp implements General_PostService {
 	@Autowired
 	private General_PostRepository general_PostRepository;
-
+	@Autowired
+	private Offer_Task_SolutionServiceImp offerService;
 	@Override
 	public List<General_Post> listerPubs() {
 		// TODO Auto-generated method stub
@@ -32,9 +34,13 @@ public class General_PostServiceImp implements General_PostService {
 	@Override
 	public General_Post updatePub(Long id, General_Post offer) {
 		// TODO Auto-generated method stub
+		
 		General_Post updatedPub=general_PostRepository.findPubById(id);
 		if(updatedPub!=null) {
-			updatedPub.setOffertasksolution(offer.getOffertasksolution());
+			
+			Offer_Task_Solution offe =offerService.updateOffer(offer.getOffertasksolution().getId(), offer.getOffertasksolution());
+			System.out.println(offe.getDescription());
+			updatedPub.setOffertasksolution(offe);
 			updatedPub.setNlike(offer.getNlike());
 			updatedPub.setPost(offer.getPost());
 			updatedPub.setAffichedate(offer.getAffichedate());

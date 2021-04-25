@@ -26,10 +26,10 @@ private General_PostService general_PostService;
 	@Override
 	public Comment addComment(Comment comment) {
 		// TODO Auto-generated method stub
-		Comment c= new Comment();
-		System.out.println(comment.getCreated_at());
+		System.out.println("dkhalna lel add comment");
+		System.out.println(comment.getGeneral_Post().getId());
 		Date d = new Date();
-		d.setHours(d.getHours()+1);
+		
 		comment.setCreated_at(d);
 		comment.setUpdated_at(d);
 		System.out.println(comment.getCreated_at());
@@ -67,6 +67,12 @@ private General_PostService general_PostService;
 	public int nComments(Long idpub) {
 		// TODO Auto-generated method stub
 		return commentRepository.nComments(idpub);
+	}
+
+	@Override
+	public List<Comment> getComments() {
+		// TODO Auto-generated method stub
+		return commentRepository.getComments();
 	}
 
 }
