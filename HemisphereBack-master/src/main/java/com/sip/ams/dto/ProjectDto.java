@@ -48,6 +48,11 @@ public class ProjectDto {
 //    @JoinColumn(name = "profile_id", nullable = false)
 //    private Profile profile;
   private Collection<SprintDto> sprints;
+  
+
+
+
+
 
 public Long getProject_id() {
 	return project_id;

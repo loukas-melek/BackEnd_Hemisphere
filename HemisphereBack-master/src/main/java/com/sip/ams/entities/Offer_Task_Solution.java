@@ -57,9 +57,6 @@ public class Offer_Task_Solution {
 	@Column(name = "cost")
 	private int cost;
 	
-	@Column(name = "ipath")
-	private String ipath;
-
 	@Column(name = "poste")
 	private String poste;
 
@@ -151,13 +148,7 @@ public class Offer_Task_Solution {
 		this.type = type;
 	}
 
-	public String getIpath() {
-		return ipath;
-	}
 
-	public void setIpath(String ipath) {
-		this.ipath = ipath;
-	}
 
 	public String getPoste() {
 		return poste;

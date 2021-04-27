@@ -29,10 +29,25 @@ public class Comment extends AuditModel {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Profile profile;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id_general_post", nullable = false) // clé étrangère
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "id_general_post", nullable = true) // clé étrangère
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private General_Post general_Post;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "id_comment", nullable = true) // clé étrangère
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Comment id_comment;
+
+	
+	
+	public Comment getId_comment() {
+		return id_comment;
+	}
+
+	public void setId_comment(Comment id_comment) {
+		this.id_comment = id_comment;
+	}
 
 	public Long getId() {
 		return id;

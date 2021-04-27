@@ -34,6 +34,10 @@ public class CommentController {
 	 public List<Comment> getAllCommentsByPub(@PathVariable Long id) {
 	 return commentService.listerCommentsByPub(id);
 	 }
+	@GetMapping("/replies/{id}")
+	 public List<Comment> getReplies(@PathVariable Long id) {
+	 return commentService.getReplies(id);	
+	 }
 	@GetMapping("/count/{id}")
 	 public int getCommentsNumber(@PathVariable Long id) {
 	 return commentService.nComments(id);

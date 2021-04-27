@@ -48,16 +48,15 @@ public class Project extends AuditModel{
 		private String title ;
 		
 		@Column(nullable = true)
-		private  String image_path ;
-		
-		@Column(nullable = true)
 		private  Integer is_active ;
 		
 		@Column(nullable = true)
 		private  String description ;
 		
-		@Column(nullable = true)
-		private  Integer project_category_id ;
+		 @ManyToOne(fetch = FetchType.LAZY, optional = false)	  
+		  @JoinColumn(name = "id_generale_post", nullable = false) // clé étrangère
+		  @OnDelete(action = OnDeleteAction.CASCADE) 
+		  private General_Post generalpost;
 		
 		@Column(nullable = true)
 		private CategorieOffer project_category ;
@@ -67,18 +66,46 @@ public class Project extends AuditModel{
 	    @JoinColumn(name = "profile_id", nullable = false)
 	    private Profile profile;
 
-	
-	
+		 @ManyToMany
+		 @JoinTable(
+		name="Student_Project",
+		joinColumns=@JoinColumn(name="PROJ_ID"
+		,referencedColumnName="project_id"))
+		private List<Profile> students;
 	  @OneToMany(mappedBy="project", cascade = CascadeType.ALL, orphanRemoval = true)
 	  private Collection<Sprint> sprints;
 	 
-	 
+	
 		
 		
 		
 
 	
 		
+
+		public General_Post getGeneralpost() {
+		return generalpost;
+	}
+
+
+
+	public void setGeneralpost(General_Post generalpost) {
+		this.generalpost = generalpost;
+	}
+
+
+
+	public List<Profile> getStudents() {
+		return students;
+	}
+
+
+
+	public void setStudents(List<Profile> students) {
+		this.students = students;
+	}
+
+
 
 		public Project(){}
 		
@@ -92,10 +119,8 @@ public class Project extends AuditModel{
 			this.start_date = start_date;
 			this.end_date = end_date;
 			this.title = title;
-			this.image_path = image_path;
 			this.is_active = is_active;
 			this.description = description;
-			this.project_category_id = project_category_id;
 			this.project_category = project_category;
 			this.profile = profile;
 			this.sprints = sprints;
@@ -135,13 +160,7 @@ public class Project extends AuditModel{
 			this.title = title;
 		}
 
-		public String getImage_path() {
-			return image_path;
-		}
-
-		public void setImage_path(String image_path) {
-			this.image_path = image_path;
-		}
+		
 
 		public Integer getIs_active() {
 			return is_active;
@@ -159,13 +178,7 @@ public class Project extends AuditModel{
 			this.description = description;
 		}
 
-		public Integer getProject_category_id() {
-			return project_category_id;
-		}
-
-		public void setProject_category_id(Integer project_category_id) {
-			this.project_category_id = project_category_id;
-		}
+		
 
 		public CategorieOffer getProject_category() {
 			return project_category;
@@ -186,8 +199,8 @@ public class Project extends AuditModel{
 		@Override
 		public String toString() {
 			return "Project [project_id=" + project_id + ", start_date=" + start_date + ", end_date=" + end_date
-					+ ", title=" + title + ", image_path=" + image_path + ", is_active=" + is_active + ", description="
-					+ description + ", project_category_id=" + project_category_id + ", project_category="
+					+ ", title=" + title   + ", is_active=" + is_active + ", description="
+					+ description + ", project_category_id="  + ", project_category="
 					+ project_category + ", profile=" + profile + "]";
 		}
 

@@ -10,9 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.sip.ams.entities.General_Post;
 import com.sip.ams.entities.Offer_Task_Solution;
-
+import com.sip.ams.entities.Project;
 import com.sip.ams.repositories.Offer_Task_SolutionRepository;
 import com.sip.ams.repositories.ProfileRepository;
+import com.sip.ams.repositories.ProjectRepository;
 import com.sip.ams.repositories.General_PostRepository;
 
 import com.sip.ams.services.Offer_Task_SolutionService;
@@ -27,7 +28,8 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 	private ProfileRepository profileRepository;
 	@Autowired
 	private Offer_Task_SolutionRepository offerrepository;
-
+	@Autowired
+	private ProjectRepository projectrepository;
 	@Override
 	public List<Offer_Task_Solution> listerOffer() {
 		// TODO Auto-generated method stub
@@ -55,8 +57,17 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 		System.out.println(p.getOffertasksolution());
 		
 		 
-		general_PostRepository.save(p);
-
+		General_Post pro=general_PostRepository.save(p);
+		Project project = new Project();
+		project.setCreated_at(d);
+		project.setDescription(offer.getDescription());
+		project.setIs_active(0);
+		project.setProfile(p.getProfile());
+		project.setProject_category(offer.getCategorie());
+		project.setTitle(offer.getTitle());
+		project.setGeneralpost(pro);
+		project.setUpdated_at(d);
+		projectrepository.save(project);
 	}
 
 	@Override
@@ -71,7 +82,6 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 			oldOffer.setStudentNumber(offer.getStudentNumber());
 			oldOffer.setTitle(offer.getTitle());
 			oldOffer.setLocation(offer.getLocation());
-			oldOffer.setIpath(offer.getIpath());
 			oldOffer.setPoste(offer.getPoste());
 			oldOffer.setType(offer.getType());
 			oldOffer.setCompetance(offer.getCompetance());

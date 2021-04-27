@@ -21,6 +21,9 @@ public interface CommentRepository extends JpaRepository<Comment, Long>{
 @Query(value="select * from comment where comment.id_general_post=:pub_id ORDER BY comment.created_at DESC",nativeQuery=true)
 	List<Comment>	getByPub(@Param("pub_id") Long pub_id);
 
+@Query(value="select * from comment where comment.id_comment=:id ORDER BY comment.created_at DESC",nativeQuery=true)
+List<Comment>	getReplies(@Param("id") Long id);
+
 @Query(value="Select count(comment.id) from comment where comment.id_general_post=:idpub",nativeQuery=true)
 int nComments (@Param("idpub") Long idpub );
 }

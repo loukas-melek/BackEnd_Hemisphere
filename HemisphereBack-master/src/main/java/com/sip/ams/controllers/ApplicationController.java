@@ -61,4 +61,6 @@ public class ApplicationController {
 		  System.out.println(status);
 	    return applicationService.treatDemande(demandeId, status);
 	  }
+	 
+	 
 }

@@ -47,9 +47,7 @@ public class ProjectConverter {
 		dto.setStart_date(project.getStart_date());
 		dto.setEnd_date(project.getEnd_date());
 		dto.setTitle(project.getTitle());
-		dto.setImage_path(project.getImage_path());
 		dto.setIs_active(project.getIs_active());
-		dto.setProject_category_id(project.getProject_category_id());
 		//dto.setProject_category(project.getProject_category());
 		dto.setSprints(project.getSprints().stream().map(x->convertSprintToDto(x)).collect(Collectors.toList()));
 	return dto;

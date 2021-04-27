@@ -16,6 +16,7 @@ public interface CommentService {
 	List<Comment> listerCommentsByPub(Long id);
 	int nComments (Long idpub );
 	List<Comment>	getComments();
+	List<Comment>	getReplies(Long id);
 
 
 }

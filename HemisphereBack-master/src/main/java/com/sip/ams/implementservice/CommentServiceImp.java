@@ -75,4 +75,10 @@ private General_PostService general_PostService;
 		return commentRepository.getComments();
 	}
 
+	@Override
+	public List<Comment> getReplies(Long id) {
+		
+		return commentRepository.getReplies(id);
+	}
+
 }
