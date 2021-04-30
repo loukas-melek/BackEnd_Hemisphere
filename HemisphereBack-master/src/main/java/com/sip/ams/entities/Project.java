@@ -72,6 +72,7 @@ public class Project extends AuditModel{
 		joinColumns=@JoinColumn(name="PROJ_ID"
 		,referencedColumnName="project_id"))
 		private List<Profile> students;
+		 
 	  @OneToMany(mappedBy="project", cascade = CascadeType.ALL, orphanRemoval = true)
 	  private Collection<Sprint> sprints;
 	 

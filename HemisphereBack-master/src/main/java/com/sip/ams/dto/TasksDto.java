@@ -15,7 +15,7 @@ private Long task_id;
 	private Integer is_done ;
 	
 	
-	//private Status status;
+	private Status status;
 	
 	private Integer priority ;
 	
@@ -77,6 +77,14 @@ private Long task_id;
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 	
 	

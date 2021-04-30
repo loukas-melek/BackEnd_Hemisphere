@@ -33,15 +33,14 @@ public class ProjectDto {
 	
 	private String title ;
 	
-	private  String image_path ;
 	
 	private  Integer is_active ;
 	
 	private  String description ;
 	
-	private  Integer project_category_id ;
+
 	
-	//private CategorieOffer project_category ;
+	private CategorieOffer project_category ;
 	
 	//@JsonBackReference
 //	@ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -86,13 +85,6 @@ public void setTitle(String title) {
 	this.title = title;
 }
 
-public String getImage_path() {
-	return image_path;
-}
-
-public void setImage_path(String image_path) {
-	this.image_path = image_path;
-}
 
 public Integer getIs_active() {
 	return is_active;
@@ -110,21 +102,14 @@ public void setDescription(String description) {
 	this.description = description;
 }
 
-public Integer getProject_category_id() {
-	return project_category_id;
+
+public CategorieOffer getProject_category() {
+	return project_category;
 }
 
-public void setProject_category_id(Integer project_category_id) {
-	this.project_category_id = project_category_id;
+public void setProject_category(CategorieOffer project_category) {
+	this.project_category = project_category;
 }
-
-//public CategorieOffer getProject_category() {
-//	return project_category;
-//}
-//
-//public void setProject_category(CategorieOffer project_category) {
-//	this.project_category = project_category;
-//}
 
 public Collection<SprintDto> getSprints() {
 	return sprints;
