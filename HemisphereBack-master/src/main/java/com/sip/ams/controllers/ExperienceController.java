@@ -42,6 +42,7 @@ public class ExperienceController {
 	@PutMapping("update/{experienceId}")
 	 public Experience updateProfile(@PathVariable Long experienceId, @Valid
 	@RequestBody Experience experience) {
+		System.out.println("controller"+experience.getDescription());
 		 return experienceService.updateExperience(experienceId, experience);
 			 }
 	 @DeleteMapping("delete/{experienceId}")

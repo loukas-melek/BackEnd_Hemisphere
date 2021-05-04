@@ -70,13 +70,20 @@ public class ProjectServiceImp implements ProjectService{
 	public void delete(Long project_id) {
 		projectrepository.deleteById(project_id);
 	}
-	 void sendEmail(Profile p) {
-
+	 void sendEmail(Profile p,Project project) {
+		 System.out.println(project.getGeneralpost().getOffertasksolution().getOffer_type());
 	        SimpleMailMessage msg = new SimpleMailMessage();
 	        msg.setTo(p.getEmail());
 
-	        msg.setSubject("Testing from Spring Boot");
-	        msg.setText("Hello World \n Spring Boot Email");
+	        msg.setSubject("Response following an application approval ["+ project.getGeneralpost().getOffertasksolution().getOffer_type()+"]");
+	        msg.setText("Hello "+ p.getLastname() +" "+ p.getName()+",\n\n"+"Thank you again for your time, we highly appreciate your commitment." + 
+	        		"\n" + 
+	        		"\nWe are happy to inform you that you have obtained "+ project.getProfile().getLastname()+" " + project.getProfile().getName() +"'s approval on the "+" <<"+project.getTitle()+">> "+"project and we look forward to welcome you to the project team.\n"
+	        				+ "\nTo see your tasks and start working, join the hemisphere by clicking on this link: http://localhost:4200/student/workflow\n\nRegards,\r\n" + 
+	        				"\r\n" + 
+	        				"Support team. \r\n" + 
+	        				"\r\n" + 
+	        				"Hemisphere.com.tn" );
 
 	        javaMailSender.send(msg);
 
@@ -86,6 +93,7 @@ public class ProjectServiceImp implements ProjectService{
 	public void ConfirmProject(Long proj_id,List<Profile> students) {
 		// TODO Auto-generated method stub
 		System.out.println("we are in the implementation");
+		Project p =projectrepository.getOne(proj_id);
 		System.out.println(proj_id);
 		System.out.println(students);
 		System.out.println(students.size());
@@ -95,25 +103,31 @@ public class ProjectServiceImp implements ProjectService{
 			System.out.println(proj_id);
 			projectrepository.ConfirmProject(proj_id,students.get(i).getId());
 			System.out.println("kamalna el save lel base");
-			this.sendEmail(students.get(i));
+			this.sendEmail(students.get(i),p);
 		}
 	}
 
 	@Override
-	public Project findByGeneralPostId(Long id) {
-		// TODO Auto-generated method stub
-		return projectrepository.findByGeneralPostId(id);
+	public ProjectDto findByGeneralPostId(Long id) {
+		Project retour =projectrepository.findByGeneralPostId(id);
+		return converter.convertProjectToDto(retour);
 	}
 
 	
 
 	@Override
-	public List<Project> findByStudentId(Long id) {
+	public List<ProjectDto> findByStudentId(Long id) {
 		List<Project> retourList= new ArrayList<Project>();
 		List<Long> listIds=projectrepository.FindByStudent(id);
 		for(int i=0;i<listIds.size();i++) {
 			retourList.add(projectrepository.getOne(listIds.get(i)));
 		}
-		return retourList;
+		return converter.convertListProjectToDto(retourList);
+	}
+
+	@Override
+	public List<ProjectDto> FindByCompany(Long id) {
+		List<Project> retourList= projectrepository.FindByCompany(id);
+		return converter.convertListProjectToDto(retourList);
 	}
 }

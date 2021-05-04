@@ -55,4 +55,7 @@ public class ProjectConverter {
 	public List<ProjectDto> convertListProjectToDto(List<Project> projects){
 		return projects.stream().map(x-> convertProjectToDto(x)).collect(Collectors.toList());
 	}
+	public List<SprintDto> convertListSprintToDto(List<Sprint> sprints){
+		return sprints.stream().map(x-> convertSprintToDto(x)).collect(Collectors.toList());
+	}
 }

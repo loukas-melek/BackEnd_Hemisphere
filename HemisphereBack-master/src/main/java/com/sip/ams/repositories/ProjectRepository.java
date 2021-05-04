@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import com.sip.ams.dto.ProjectDto;
 import com.sip.ams.entities.Project;
 
 @Repository("ProjectRepository")
@@ -23,4 +25,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 	
 	@Query(value="Select proj_id  from student_project where student_project.students_id=:id",nativeQuery=true)
 	List<Long> FindByStudent(@Param("id") Long id );
+	
+	@Query(value="Select *  from project where project.profile_id=:id",nativeQuery=true)
+	List<Project> FindByCompany(@Param("id") Long id );
 }

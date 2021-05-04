@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sip.ams.entities.Profile;
+import com.sip.ams.entities.Project;
 import com.sip.ams.entities.Role;
 import com.sip.ams.entities.User;
 import com.sip.ams.exception.CustomException;
@@ -33,7 +36,8 @@ public class UserService {
   private ProfileRepository profileRepository;
   @Autowired
   private PasswordEncoder passwordEncoder;
-
+  @Autowired
+  private JavaMailSender javaMailSender;
   @Autowired
   private JwtTokenProvider jwtTokenProvider;
 
@@ -61,12 +65,13 @@ public class UserService {
       u.setPassword(passwordEncoder.encode(user.getPassword()));
       System.out.println(user.getRoles());
       System.out.println(user.getUsername());
-      userRepository.save(u);
+      User userr=userRepository.save(u);
       profile.setCreated_at(new Date());
       profile.setUpdated_at(new Date());
       profile.setUser(u);
       profile.setEmail(user.getEmail());
-      profileRepository.save(profile);
+      Profile p=profileRepository.save(profile);
+      this.sendEmail(user, p);
       return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
     } else {
       throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
@@ -109,9 +114,31 @@ public class UserService {
 	  System.out.println(u.getPassword());
 	  System.out.println(password);
 	  password.toString();
+	  
 	  boolean isPasswordMatch = passwordEncoder.matches(password, u.getPassword());
 	  System.out.println(isPasswordMatch);
 	  return isPasswordMatch;
   
   }
+  void sendEmail(User user, Profile p) {
+		
+	        SimpleMailMessage msg = new SimpleMailMessage();
+	        msg.setTo(user.getEmail());
+
+	        msg.setSubject("Welcome to Hemisphere");
+	        msg.setText("Hi "+ p.getLastname() +" "+ p.getName()+",\n\n"+"Thanks for joining Hemisphere, and welcome!\n"  + 
+	        		"\nYou are now a member of Hemisphere," + 
+	        		" and your account information is listed below.\n"+"\nWe suggest you print this email for your records, as it" + 
+	        				" contains all of the important information needed for your" + 
+	        				" account.\n"
+	        				+ "\nTo login to the Member's Section use the following:\n" + 
+	        				"\r\n" + 
+	        				"Username :"+ user.getUsername()+ " \r\n" + 
+	        				"Password :"+ user.getPassword()+"\r\n\nSincerely,\n\nSupport team.\n" + 
+	        						"\n" + 
+	        				"Hemisphere.com.tn" );
+
+	        javaMailSender.send(msg);
+
+	    }
 }

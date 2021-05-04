@@ -1,5 +1,6 @@
 package com.sip.ams.implementservice;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +23,29 @@ public class ExperienceServiceImp  implements ExperienceService{
 	@Override
 	public void addPub(Experience experience) {
 		// TODO Auto-generated method stub
+		experience.setCreated_at(new Date());
+		experience.setUpdated_at(new Date());
 		experienceRepository.save(experience);
 	}
 
 	@Override
 	public Experience updateExperience(Long id, Experience experience) {
 		Experience e = experienceRepository.getOne(id);
+		System.out.println(experience.getTitle());
+		System.out.println(experience.getDescription());
 		if(e!=null) {
-			e.setCompany(experience.getCompany());
+			System.out.println("p1"+e.getProfile());
 			e.setCreated_at(experience.getCreated_at());
-			e.setUpdated_at(experience.getUpdated_at());
+			e.setUpdated_at(new Date());
+			e.setCompany(experience.getCompany());
 			e.setDescription(experience.getDescription());
-			e.setProfile(experience.getProfile());
 			e.setType(experience.getType());
 			e.setTitle(experience.getTitle());
+			
 		}
+		System.out.println(e.getTitle());
+		System.out.println(e.getProfile().getName());
+		System.out.println(e.getDescription());
 		return experienceRepository.save(e);
 	}
 

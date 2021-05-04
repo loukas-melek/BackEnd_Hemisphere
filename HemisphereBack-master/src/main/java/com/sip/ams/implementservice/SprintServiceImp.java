@@ -6,8 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sip.ams.converts.ProjectConverter;
+import com.sip.ams.dto.SprintDto;
 import com.sip.ams.entities.Project;
 import com.sip.ams.entities.Sprint;
+import com.sip.ams.repositories.ProjectRepository;
 import com.sip.ams.repositories.SprintRepository;
 import com.sip.ams.services.SprintService;
 
@@ -15,7 +18,10 @@ import com.sip.ams.services.SprintService;
 public class SprintServiceImp implements SprintService {
 	@Autowired
 	SprintRepository sprintrepository;
-	
+	@Autowired
+	ProjectRepository projectRepository;
+	@Autowired
+	private ProjectConverter converter;
 	@Override
 	public List<Sprint> getAllSprints() {
 		List<Sprint> spr = new ArrayList<>();
@@ -24,17 +30,21 @@ public class SprintServiceImp implements SprintService {
 	}
 
 	@Override
-	public Sprint getSprintById(long sprint_id) {
-		return  sprintrepository.findById(sprint_id).get(); 
+	public SprintDto getSprintById(Long sprint_id) {
+		Sprint s=  sprintrepository.findById(sprint_id).get(); 
+		return converter.convertSprintToDto(s);
 	}
 
 	@Override
-	public Sprint insert(Sprint sprint) {
-		return sprintrepository.save(sprint);
-	}
+    public Sprint insert(Sprint sprint) {
+        Project sp=projectRepository.getOne(sprint.getProject().getProject_id());
+        sprint.setProject(sp);
+        System.out.println(sprint);
+        return sprintrepository.save(sprint);
+    }
 
 	@Override
-	public void saveOrUpdate(Sprint sprint, long sprint_id) {
+	public void saveOrUpdate(Sprint sprint, Long sprint_id) {
 		Sprint sprin=sprintrepository.findById(sprint_id).get();
 		System.out.println(sprin.toString());
 		sprin.setDescription(sprin.getDescription());
@@ -46,15 +56,16 @@ public class SprintServiceImp implements SprintService {
 	}
 
 	@Override
-	public void delete(long sprint_id) {
+	public void delete(Long sprint_id) {
 		sprintrepository.deleteById(sprint_id);
 		
 	}
 
 	@Override
-	public List<Sprint> getSprintsByproject(Long project_id) {
+	public List<SprintDto> getSprintsByproject(Long project_id) {
 		// TODO Auto-generated method stub
-		return sprintrepository.getSprintsByproject(project_id);
+		List<Sprint> s= sprintrepository.getSprintsByproject(project_id);
+		return converter.convertListSprintToDto(s);
 	}
 
 }

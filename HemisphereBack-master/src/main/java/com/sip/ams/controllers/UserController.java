@@ -127,7 +127,7 @@ public class UserController {
   }
 
   @GetMapping(value = "/me")
-  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_STUDENT') or hasRole('ROLE_COMPANY')")
+  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_STUDENT') or hasRole('ROLE_COMPANY')or hasRole('ROLE_SUPERVISOR')")
   @ApiOperation(value = "${UserController.me}", response = UserResponseDTO.class, authorizations = { @Authorization(value="apiKey") })
   @ApiResponses(value = {//
       @ApiResponse(code = 400, message = "Something went wrong"), //
@@ -138,7 +138,7 @@ public class UserController {
   }
 
   @GetMapping("/refresh")
-  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
+  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_STUDENT') or hasRole('ROLE_COMPANY')or hasRole('ROLE_SUPERVISOR')")
   public String refresh(HttpServletRequest req) {
     return userService.refresh(req.getRemoteUser());
   }
@@ -152,7 +152,7 @@ public class UserController {
   }
   
   @PutMapping("update/{userId}")
-  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_STUDENT') or hasRole('ROLE_COMPANY')")
+  @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_STUDENT') or hasRole('ROLE_COMPANY')or hasRole('ROLE_SUPERVISOR')")
 	 public User updateUser(@PathVariable Integer userId, @Valid
 	@RequestBody User user) {
 	  

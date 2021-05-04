@@ -75,6 +75,7 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 
 		Offer_Task_Solution oldOffer = offerrepository.findOfferById(id);
 		if (oldOffer != null) {
+			System.out.println(offer.getOffer_type());
 			oldOffer.setCategorie(offer.getCategorie());
 			oldOffer.setCost(offer.getCost());
 			oldOffer.setDescription(offer.getDescription());
@@ -84,6 +85,7 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 			oldOffer.setLocation(offer.getLocation());
 			oldOffer.setPoste(offer.getPoste());
 			oldOffer.setType(offer.getType());
+			oldOffer.setOffer_type(offer.getOffer_type());
 			oldOffer.setCompetance(offer.getCompetance());
 			offerrepository.save(oldOffer);
 		}

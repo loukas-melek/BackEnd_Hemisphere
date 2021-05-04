@@ -49,18 +49,23 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/student/{student_id}")
-	public List<Project>FindByStudent(@PathVariable Long student_id){
+	public List<ProjectDto>FindByStudent(@PathVariable Long student_id){
 		return projectservice.findByStudentId(student_id);
 	}
 	
 	@GetMapping("/find/{post_id}")
-	public Project FindByGeneralPost(@PathVariable Long post_id){
+	public ProjectDto FindByGeneralPost(@PathVariable Long post_id){
 		return projectservice.findByGeneralPostId(post_id);
 	}
 	@GetMapping("/{project_id}")  
 	public ResponseEntity<Project> getProjectById(@PathVariable Long project_id) 
 	{
         return new ResponseEntity<>(projectservice.getProjectById(project_id), HttpStatus.OK);
+	}
+	@GetMapping("/company/{project_id}")  
+	public List<ProjectDto> getProjectByCompany(@PathVariable Long project_id) 
+	{	
+        return projectservice.FindByCompany(project_id);
 	}
 	
 	

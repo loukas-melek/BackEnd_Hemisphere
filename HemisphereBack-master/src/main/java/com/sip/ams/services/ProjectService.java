@@ -19,7 +19,7 @@ public interface ProjectService {
 	 void saveOrUpdate(Project project,Long project_id);
 	 void delete(Long project_id);
 	 void ConfirmProject( Long proj_id, List<Profile> students);
-	 Project findByGeneralPostId( Long id );
-	 List<Project> findByStudentId(Long id);
-
+	 ProjectDto findByGeneralPostId( Long id );
+	 List<ProjectDto> findByStudentId(Long id);
+	 List<ProjectDto> FindByCompany(Long id );
 }

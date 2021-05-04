@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sip.ams.dto.SprintDto;
 import com.sip.ams.entities.Project;
 import com.sip.ams.entities.Sprint;
 import com.sip.ams.entities.Sprint_Tasks;
@@ -37,7 +38,7 @@ public class SprintController {
 
 	
 	@GetMapping("/{sprint_id}")  
-	public ResponseEntity<Sprint> getSprintById(@PathVariable Long sprint_id) 
+	public ResponseEntity<SprintDto> getSprintById(@PathVariable Long sprint_id) 
 	{
         return new ResponseEntity<>(sprintservice.getSprintById(sprint_id), HttpStatus.OK);
 	}
@@ -49,7 +50,7 @@ public class SprintController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	@GetMapping("sprint/{project_id}")  
-	public List<Sprint> getTasksBysprintId(@PathVariable Long project_id) 
+	public List<SprintDto> getTasksBysprintId(@PathVariable Long project_id) 
 	{
         return sprintservice.getSprintsByproject(project_id);
 	}
@@ -59,12 +60,12 @@ public class SprintController {
         Sprint sprint1 = sprintservice.insert(sprint);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("sprint", "/sprint/" + sprint1.getSprint_id().toString());
-        return new ResponseEntity<>(sprint1, httpHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>( httpHeaders, HttpStatus.CREATED);
     }
 	
 	@PutMapping("/{sprint_id}")  		
-	public ResponseEntity<Sprint> saveOrUpdate(@PathVariable("sprint_id") long sprint_id, @RequestBody Sprint sprint) {
+	public ResponseEntity<Sprint> saveOrUpdate(@PathVariable("sprint_id") Long sprint_id, @RequestBody Sprint sprint) {
 		sprintservice.saveOrUpdate(sprint,sprint_id);
-        return new ResponseEntity<>(sprintservice.getSprintById(sprint_id), HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 }
