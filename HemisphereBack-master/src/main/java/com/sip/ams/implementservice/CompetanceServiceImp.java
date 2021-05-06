@@ -1,5 +1,6 @@
 package com.sip.ams.implementservice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,14 @@ public class CompetanceServiceImp implements CompetenceService {
 	}
 
 	@Override
-	public void addCompetance(Competance Competance) {
+	public void addCompetance(Competance Competance,Long id) {
 		// TODO Auto-generated method stub
-		competanceRepository.save(Competance);
+		Competance c=competanceRepository.save(Competance);
+		System.out.println("id el task"+id);
 		System.out.println(Competance.getId());
 		System.out.println(Competance.getCompetance());
+		competanceRepository.addCompetanceToOffertask(id, c.getId());
+		
 		
 	}
 
@@ -56,6 +60,26 @@ public class CompetanceServiceImp implements CompetenceService {
 	public List<Offer_Task_Solution> getOfferByCompetanceId(Long id) {
 		// TODO Auto-generated method stub
 		return competanceRepository.getOfferByCompetanceId(id);
+	}
+
+	@Override
+	public Competance getCompetanceByID(Long id) {
+		// TODO Auto-generated method stub
+		return competanceRepository.getOne(id);
+	}
+
+	@Override
+	public List<Competance> getListCompetance(Long id) {
+		// TODO Auto-generated method stub
+		
+		List<Long> lst = competanceRepository.getListCompetance(id);
+		System.out.println(id+"our list here"+lst);
+		List<Competance> retour = new ArrayList<Competance>();
+		for(int i=0;i<lst.size();i++) {
+			retour.add(competanceRepository.getOne(lst.get(i)));
+			System.out.println(competanceRepository.getOne(lst.get(i)).getCompetance());
+		}
+		return retour;
 	}
 
 }

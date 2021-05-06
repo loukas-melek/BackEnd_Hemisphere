@@ -69,7 +69,7 @@ public class Offer_Task_Solution {
 	private LocationsOffer location;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "offer_competance", joinColumns = @JoinColumn(name = "offer_id"), inverseJoinColumns = @JoinColumn(name = "competance_id"))
+	@JoinTable(name = "offertask_competance", joinColumns = @JoinColumn(name = "offertask_id"), inverseJoinColumns = @JoinColumn(name = "competance_id"))
 	private Set<Competance> competance;
 
 	public CategorieOffer getCategorie() {

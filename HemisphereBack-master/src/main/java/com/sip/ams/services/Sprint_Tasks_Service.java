@@ -13,9 +13,7 @@ import com.sip.ams.entities.Sprint_Tasks;
 public interface Sprint_Tasks_Service {
 	
 	List<TasksDto> getAllSprint_Tasks();
-	
 	Sprint_Tasks getSprint_TaskstById(Long task_id);
-	
 	Sprint_Tasks insert(Sprint_Tasks sprint_tasks);
 	void saveOrUpdate(Sprint_Tasks sprint_tasks,Long task_id);
 	void delete(Long task_id);

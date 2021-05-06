@@ -44,13 +44,13 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 	}
 
 	@Override
-	public void addOffer(Offer_Task_Solution offer,Long userid) {
-		offerrepository.save(offer);
+	public Offer_Task_Solution addOffer(Offer_Task_Solution offer,Long userid) {
+		Offer_Task_Solution o=offerrepository.save(offer);
 		 General_Post p= new General_Post();
 		 Date d=new Date();
 		 p.setCreated_at(d);
 		 p.setUpdated_at(d); 
-		 p.setOffertasksolution(offer);
+		 p.setOffertasksolution(o);
 		p.setProfile(profileRepository.getOne(userid));
 		System.out.println(p.getCreated_at());
 		System.out.println(p.getProfile());
@@ -68,6 +68,7 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 		project.setGeneralpost(pro);
 		project.setUpdated_at(d);
 		projectrepository.save(project);
+		return o;
 	}
 
 	@Override
@@ -177,41 +178,11 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 		return offerrepository.findAll();
 	}
 
-	/*
-	 * @Override public List<Offer_Task_Solution> filterGlobal(List<Offer_Task_Solution> listToFilter, String
-	 * location, String type, String categorie) { List<Offer_Task_Solution> retour = new
-	 * ArrayList(); System.out.println("we are in the filter..."); if (location !=
-	 * "" && type == "" && categorie == "") {
-	 * 
-	 * for (Offer_Task_Solution offer : listToFilter) { if
-	 * (offer.getLocation().toString().equals(location)) { retour.add(offer); } } }
-	 * if (location == "" && type != "" && categorie == "") {
-	 * System.out.println("we are in the filterBy Type it's working...");
-	 * System.out.println(type);
-	 * 
-	 * for (Offer_Task_Solution offer : listToFilter) { System.out.println(offer);
-	 * System.out.println(offer.getType().toString().equals(type));
-	 * System.out.println(offer.getType()); if
-	 * (offer.getType().toString().equals(type)) { System.out.println(offer);
-	 * retour.add(offer); System.out.println(retour); } }
-	 * System.out.println(retour);
-	 * 
-	 * } if (location == "" && type == "" && categorie != "") { for (Offer_Task_Solution offer :
-	 * listToFilter) { if (offer.getCategorie().toString().equals(categorie)) {
-	 * retour.add(offer); } } } if (location != "" && type != "" && categorie == "")
-	 * { for (Offer_Task_Solution offer : listToFilter) { if
-	 * (offer.getType().toString().equals(type) &&
-	 * offer.getLocation().toString().equals(location)) { retour.add(offer); } } }
-	 * if (location != "" && type == "" && categorie != "") { for (Offer_Task_Solution offer :
-	 * listToFilter) { if (offer.getCategorie().toString().equals(categorie) &&
-	 * offer.getLocation().toString().equals(location)) { retour.add(offer); } } }
-	 * if (location == "" && type != "" && categorie != "") { for (Offer_Task_Solution offer :
-	 * listToFilter) { if (offer.getType().toString().equals(type) &&
-	 * offer.getCategorie().toString().equals(categorie)) { retour.add(offer); } } }
-	 * if (location != "" && type != "" && categorie != "") { for (Offer_Task_Solution offer :
-	 * listToFilter) { if (offer.getType().toString().equals(type) &&
-	 * offer.getCategorie().toString().equals(categorie) &&
-	 * offer.getLocation().toString().equals(location)) { retour.add(offer); } } }
-	 * return retour; }
-	 */
+	@Override
+	public List<Long> getListCompetance(Long id) {
+		// TODO Auto-generated method stub
+		return offerrepository.getListCompetance(id);
+	}
+
+
 }

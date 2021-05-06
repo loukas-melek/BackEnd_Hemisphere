@@ -31,22 +31,24 @@ public class CompetanceController {
 	 public List<Competance> getAllCompetance() {
 	 return competanceService.listerCompetances();
 	 }
-	@GetMapping("/list/Competances/{offerId}")
+	@GetMapping("/list/competances/{offerId}")
 	 public List<Competance> getCompetanceByOffer(@PathVariable Long offerId) {
-	 return competanceService.getCompetanceByOfferId(offerId);
+	 return competanceService.getListCompetance(offerId);
 	 }
+	
 	@GetMapping("/list/offers/{competanceId}")
 	 public List<Offer_Task_Solution> getOfferByCompetance(@PathVariable Long competanceId) {
 	 return competanceService.getOfferByCompetanceId(competanceId);
 	 }
-	//@PostMapping("/add")
-	// public void createCompetance( @RequestBody Competance Competance) {
-	//	competanceService.addCompetance(Competance);
-	 //}
-	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	  public void createCompetance( Competance Competance) {
-		competanceService.addCompetance(Competance);
-	  }
+	@PostMapping("/add/{id}")
+	 public void createCompetance( @RequestBody Competance Competance, @PathVariable Long id) {
+		competanceService.addCompetance(Competance,id);
+	 }
+	/*
+	 * @RequestMapping(path = "/add", method = RequestMethod.POST) public void
+	 * createCompetance( Competance Competance) {
+	 * competanceService.addCompetance(Competance); }
+	 */
 	@PutMapping("update/{demandeId}")
 	 public Competance updateCompetance(@PathVariable Long commentId, @Valid
 	@RequestBody Competance cRequest) {

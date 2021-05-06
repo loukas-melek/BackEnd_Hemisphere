@@ -2,6 +2,7 @@ package com.sip.ams.services;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.sip.ams.entities.Offer_Task_Solution;
@@ -12,10 +13,12 @@ public interface Offer_Task_SolutionService {
 
 	List<Offer_Task_Solution> listerOffer();
 	public List<Offer_Task_Solution> findAll();
-	void addOffer(Offer_Task_Solution offer,Long userid);
+	Offer_Task_Solution addOffer(Offer_Task_Solution offer,Long userid);
 	Offer_Task_Solution updateOffer(long id,Offer_Task_Solution offer);
 	void deleteOffer(long id);
 	Offer_Task_Solution listOfferById(long id);
+	List<Long> getListCompetance(Long id);
+
 
 	/*
 	 * List<Offer_Task_Solution> getOfferByUserId(Long user_id); List<Offer_Task_Solution>

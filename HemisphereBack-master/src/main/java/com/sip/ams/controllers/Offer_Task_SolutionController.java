@@ -39,7 +39,10 @@ public class Offer_Task_SolutionController {
 	 public Offer_Task_Solution getOfferById(@PathVariable long offerId) {
 	 return (Offer_Task_Solution) offer_Task_SolutionService.listOfferById(offerId);
 	 }
-
+	@GetMapping("/competance/{id}")
+	 public List<Long> getListCompetances(@PathVariable Long id) {
+	 return (List<Long>) offer_Task_SolutionService.getListCompetance(id);
+	 }
 	
 	/*
 	 * @GetMapping("/filter") public List<Offer_Task_Solution> getFiltredListOfOffers(@RequestBody
@@ -53,8 +56,8 @@ public class Offer_Task_SolutionController {
 	
 	
 	@PostMapping("/add/{id}")
-	 public void createOffer(@RequestBody Offer_Task_Solution offer,@PathVariable Long id) {
-	  offer_Task_SolutionService.addOffer(offer,id);
+	 public Offer_Task_Solution createOffer(@RequestBody Offer_Task_Solution offer,@PathVariable Long id) {
+	 return offer_Task_SolutionService.addOffer(offer,id);
 	 }
 	
 	@PutMapping("update/{offerId}")
