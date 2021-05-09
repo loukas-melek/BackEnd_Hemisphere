@@ -32,17 +32,13 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name="Project")
-public class Project extends AuditModel{
+public class Project extends Dates{
 	
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long project_id;
 	
-		@Column(nullable = true)
-		private LocalDateTime start_date ;
 		
-		@Column(nullable = true)
-		private LocalDateTime end_date ;
 		
 		@Column(nullable = true)
 		private String title ;
@@ -117,8 +113,6 @@ public class Project extends AuditModel{
 				CategorieOffer project_category, Profile profile, List<Sprint> sprints) {
 			super();
 			this.project_id = project_id;
-			this.start_date = start_date;
-			this.end_date = end_date;
 			this.title = title;
 			this.is_active = is_active;
 			this.description = description;
@@ -137,21 +131,7 @@ public class Project extends AuditModel{
 			this.project_id = project_id;
 		}
 
-		public LocalDateTime getStart_date() {
-			return start_date;
-		}
-
-		public void setStart_date(LocalDateTime start_date) {
-			this.start_date = start_date;
-		}
-
-		public LocalDateTime getEnd_date() {
-			return end_date;
-		}
-
-		public void setEnd_date(LocalDateTime end_date) {
-			this.end_date = end_date;
-		}
+		
 
 		public String getTitle() {
 			return title;
@@ -199,8 +179,8 @@ public class Project extends AuditModel{
 
 		@Override
 		public String toString() {
-			return "Project [project_id=" + project_id + ", start_date=" + start_date + ", end_date=" + end_date
-					+ ", title=" + title   + ", is_active=" + is_active + ", description="
+			return "Project [project_id=" + project_id + ", start_date="  + ", end_date=" +
+					 ", title=" + title   + ", is_active=" + is_active + ", description="
 					+ description + ", project_category_id="  + ", project_category="
 					+ project_category + ", profile=" + profile + "]";
 		}

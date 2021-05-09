@@ -59,14 +59,12 @@ public class Offer_Task_SolutionServiceImp implements Offer_Task_SolutionService
 		 
 		General_Post pro=general_PostRepository.save(p);
 		Project project = new Project();
-		project.setCreated_at(d);
 		project.setDescription(offer.getDescription());
 		project.setIs_active(0);
 		project.setProfile(p.getProfile());
 		project.setProject_category(offer.getCategorie());
 		project.setTitle(offer.getTitle());
 		project.setGeneralpost(pro);
-		project.setUpdated_at(d);
 		projectrepository.save(project);
 		return o;
 	}

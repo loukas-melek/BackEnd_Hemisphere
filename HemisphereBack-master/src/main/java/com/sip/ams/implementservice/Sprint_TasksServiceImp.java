@@ -22,20 +22,21 @@ public class Sprint_TasksServiceImp implements Sprint_Tasks_Service {
 	SprintRepository sprintRepository;
 	@Autowired
 	private ProjectConverter converter;
+
 	@Override
 	public List<TasksDto> getAllSprint_Tasks() {
-		List<TasksDto> retour=new ArrayList<TasksDto>();
+		List<TasksDto> retour = new ArrayList<TasksDto>();
 		List<Sprint_Tasks> spr = new ArrayList<>();
 		sprint_tasksRepository.findAll().forEach(spr::add);
-		 for(int i=0;i<spr.size();i++) {
+		for (int i = 0; i < spr.size(); i++) {
 			retour.add(converter.convertTaskToDto(spr.get(i)));
-		 }
-        return retour;
+		}
+		return retour;
 	}
 
 	@Override
 	public Sprint_Tasks getSprint_TaskstById(Long task_id) {
-		return  sprint_tasksRepository.findById(task_id).get();
+		return sprint_tasksRepository.findById(task_id).get();
 	}
 
 	@Override
@@ -45,18 +46,25 @@ public class Sprint_TasksServiceImp implements Sprint_Tasks_Service {
 
 	@Override
 	public void saveOrUpdate(Sprint_Tasks sprint_tasks, Long task_id) {
-		
-		  Sprint_Tasks sp=sprint_tasksRepository.findById(task_id).get();
-		  System.out.println(sp.getStatus());
-		  System.out.println(sp.toString()); sp.setDescription(sp.getDescription());
-		  sp.setDuration(sp.getDuration()); sp.setIs_done(sp.getIs_done());
-		  sp.setPriority(sp.getPriority()); sp.setTask_type(sp.getTask_type()); Sprint
-		  s=sprintRepository.getOne(sprint_tasks.getSprint().getSprint_id());
-		  sp.setSprint(s); System.out.println(sp.getSprint().getSprint_id());
-		  System.out.println(sp.getSprint().getDescription());
-		  System.out.println(sp.getDescription());
-		 sp.setStatus(sprint_tasks.getStatus());
-		 System.out.println(sp.getStatus());
+
+		Sprint_Tasks sp = sprint_tasksRepository.findById(task_id).get();
+		System.out.println(sp.getStatus());
+
+		System.out.println(sp.toString());
+		sp.setDescription(sp.getDescription());
+		sp.setEnd_date(sprint_tasks.getEnd_date());
+		sp.setStart_date(sprint_tasks.getStart_date());
+		sp.setDuration(sp.getDuration());
+		sp.setIs_done(sp.getIs_done());
+		sp.setPriority(sprint_tasks.getPriority());
+		sp.setTask_type(sp.getTask_type());
+		Sprint s = sprintRepository.getOne(sprint_tasks.getSprint().getSprint_id());
+		sp.setSprint(s);
+		System.out.println(sp.getSprint().getSprint_id());
+		System.out.println(sp.getSprint().getDescription());
+		System.out.println(sp.getDescription());
+		sp.setStatus(sprint_tasks.getStatus());
+		System.out.println(sp.getStatus());
 		sprint_tasksRepository.save(sp);
 		System.out.println("ss");
 	}
@@ -64,7 +72,7 @@ public class Sprint_TasksServiceImp implements Sprint_Tasks_Service {
 	@Override
 	public void delete(Long task_id) {
 		sprint_tasksRepository.deleteById(task_id);
-		
+
 	}
 
 	@Override

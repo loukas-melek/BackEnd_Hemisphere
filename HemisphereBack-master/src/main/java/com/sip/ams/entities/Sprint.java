@@ -1,5 +1,6 @@
 package com.sip.ams.entities;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,12 +35,42 @@ public class Sprint {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long sprint_id;
 	
-	@Column(nullable = true)
-	private LocalDateTime start_date ;
 	
-	@Column(nullable = true)
-	private LocalDateTime end_date ;
+	  @Column(nullable = true) private LocalDateTime  start_date ;
+	  
+	  @Column(nullable = true) private LocalDateTime  end_date ;
+	 
 	
+	  @Column(name = "priority")
+		@Enumerated(EnumType.STRING)
+		private Priority priority;
+	  
+	  
+	  
+	public Priority getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Priority priority) {
+		this.priority = priority;
+	}
+
+	public LocalDateTime getStart_date() {
+		return start_date;
+	}
+
+	public void setStart_date(LocalDateTime start_date) {
+		this.start_date = start_date;
+	}
+
+	public LocalDateTime getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(LocalDateTime end_date) {
+		this.end_date = end_date;
+	}
+
 	@Column(nullable = true)
 	private Integer sprint_type ;
 	
@@ -102,8 +133,6 @@ public class Sprint {
 			Project project, String description) {
 		super();
 		this.sprint_id = sprint_id;
-		this.start_date = start_date;
-		this.end_date = end_date;
 		this.sprint_type = sprint_type;
 		this.description = description;
 	}
@@ -118,21 +147,6 @@ public class Sprint {
 		this.sprint_id = sprint_id;
 	}
 
-	public LocalDateTime getStart_date() {
-		return start_date;
-	}
-
-	public void setStart_date(LocalDateTime start_date) {
-		this.start_date = start_date;
-	}
-
-	public LocalDateTime getEnd_date() {
-		return end_date;
-	}
-
-	public void setEnd_date(LocalDateTime end_date) {
-		this.end_date = end_date;
-	}
 
 	public Integer getSprint_type() {
 		return sprint_type;
@@ -147,6 +161,8 @@ public class Sprint {
 	
 
 	
+	
+
 	public String getDescription() {
 		return description;
 	}

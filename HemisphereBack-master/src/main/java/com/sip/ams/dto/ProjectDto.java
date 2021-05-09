@@ -3,6 +3,7 @@ package com.sip.ams.dto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,10 +27,10 @@ public class ProjectDto {
 	private Long project_id;
 
 	
-	private LocalDateTime start_date ;
+	private Date start_date ;
 	
 	
-	private LocalDateTime end_date ;
+	private Date end_date ;
 	
 	private String title ;
 	
@@ -61,19 +62,21 @@ public void setProject_id(Long project_id) {
 	this.project_id = project_id;
 }
 
-public LocalDateTime getStart_date() {
+
+
+public Date getStart_date() {
 	return start_date;
 }
 
-public void setStart_date(LocalDateTime start_date) {
+public void setStart_date(Date start_date) {
 	this.start_date = start_date;
 }
 
-public LocalDateTime getEnd_date() {
+public Date getEnd_date() {
 	return end_date;
 }
 
-public void setEnd_date(LocalDateTime end_date) {
+public void setEnd_date(Date end_date) {
 	this.end_date = end_date;
 }
 

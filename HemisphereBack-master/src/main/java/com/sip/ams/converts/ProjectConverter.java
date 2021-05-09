@@ -33,6 +33,7 @@ public class ProjectConverter {
 		dto.setEnd_date(sprint.getEnd_date());
 		dto.setSprint_type(sprint.getSprint_type());
 		dto.setDescription(sprint.getDescription());
+		
 		dto.setSprintsTask(sprint.getSprintTasks().stream().map(x->convertTaskToDto(x)).collect(Collectors.toList()));
 		return dto;
 	}

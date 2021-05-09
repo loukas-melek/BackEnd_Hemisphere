@@ -43,8 +43,7 @@ public class ProjectServiceImp implements ProjectService{
 	
 	@Override
     public Project insert(Project project) {
-		project.setCreated_at(new Date());
-		project.setUpdated_at(new Date());
+
         Project p= projectrepository.save(project);
         
         return p;
@@ -54,13 +53,11 @@ public class ProjectServiceImp implements ProjectService{
 	public void saveOrUpdate(Project project,Long project_id) {
 		Project projec=projectrepository.findById(project_id).get();
 		System.out.println(projec.toString());
-		projec.setCreated_at(project.getCreated_at());
 		projec.setDescription(project.getDescription());
 		projec.setEnd_date(project.getEnd_date());
 		projec.setIs_active(project.getIs_active());
 		projec.setStart_date(project.getStart_date());
 		projec.setTitle(project.getTitle());
-		projec.setUpdated_at(projec.getUpdated_at());
 		project.setProfile(project.getProfile());
 		 projectrepository.save(project);
 	}

@@ -2,6 +2,7 @@ package com.sip.ams.dto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -23,9 +24,9 @@ public class SprintDto {
 
    private Long sprint_id;
 	
-	private LocalDateTime start_date ;
+	private LocalDateTime  start_date ;
 	
-	private LocalDateTime end_date ;
+	private LocalDateTime  end_date ;
 	
 	private Integer sprint_type ;
 	
@@ -42,19 +43,21 @@ public class SprintDto {
 		this.sprint_id = sprint_id;
 	}
 
-	public LocalDateTime getStart_date() {
+	
+
+	public LocalDateTime  getStart_date() {
 		return start_date;
 	}
 
-	public void setStart_date(LocalDateTime start_date) {
+	public void setStart_date(LocalDateTime  start_date) {
 		this.start_date = start_date;
 	}
 
-	public LocalDateTime getEnd_date() {
+	public LocalDateTime  getEnd_date() {
 		return end_date;
 	}
 
-	public void setEnd_date(LocalDateTime end_date) {
+	public void setEnd_date(LocalDateTime  end_date) {
 		this.end_date = end_date;
 	}
 

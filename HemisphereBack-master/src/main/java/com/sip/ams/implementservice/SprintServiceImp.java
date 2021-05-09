@@ -39,6 +39,9 @@ public class SprintServiceImp implements SprintService {
     public Sprint insert(Sprint sprint) {
         Project sp=projectRepository.getOne(sprint.getProject().getProject_id());
         sprint.setProject(sp);
+        System.out.println("date start:"+sprint.getStart_date());
+        System.out.println("date end:"+sprint.getEnd_date());
+
         System.out.println(sprint);
         return sprintrepository.save(sprint);
     }
@@ -50,6 +53,7 @@ public class SprintServiceImp implements SprintService {
 		sprin.setDescription(sprin.getDescription());
 		sprin.setEnd_date(sprin.getEnd_date());
 		sprin.setStart_date(sprin.getStart_date());
+		sprin.setPriority(sprint.getPriority());
 		sprin.setSprint_type(sprin.getSprint_type());
 		sprintrepository.save(sprint);
 		

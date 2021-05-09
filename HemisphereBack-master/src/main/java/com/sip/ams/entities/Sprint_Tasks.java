@@ -2,6 +2,7 @@ package com.sip.ams.entities;
 
 
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name="Sprint_Tasks")
-public class Sprint_Tasks {
+public class Sprint_Tasks  {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,8 +42,49 @@ public class Sprint_Tasks {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
-	@Column(nullable = true)
-	private Integer priority ;
+	@Column(name = "priority")
+	@Enumerated(EnumType.STRING)
+	private Priority priority;
+	
+	 @Column(nullable = true) private LocalDateTime  start_date ;
+	  
+	  @Column(nullable = true) private LocalDateTime  end_date ;
+	
+	public LocalDateTime getStart_date() {
+		return start_date;
+	}
+
+
+
+	public Priority getPriority() {
+		return priority;
+	}
+
+
+
+	public void setPriority(Priority priority) {
+		this.priority = priority;
+	}
+
+
+
+	public void setStart_date(LocalDateTime start_date) {
+		this.start_date = start_date;
+	}
+
+
+
+	public LocalDateTime getEnd_date() {
+		return end_date;
+	}
+
+
+
+	public void setEnd_date(LocalDateTime end_date) {
+		this.end_date = end_date;
+	}
+
+	
 	
 	@Column(nullable = true)
 	private double duration ;
@@ -85,7 +127,6 @@ public class Sprint_Tasks {
 		this.task_id = task_id;
 		this.task_type = task_type;
 		this.is_done = is_done;
-		this.priority = priority;
 		this.duration = duration;
 		this.description = description;
 	}
@@ -120,13 +161,7 @@ public class Sprint_Tasks {
 		this.is_done = is_done;
 	}
 
-	public Integer getPriority() {
-		return priority;
-	}
 
-	public void setPriority(Integer priority) {
-		this.priority = priority;
-	}
 
 	public double getDuration() {
 		return duration;

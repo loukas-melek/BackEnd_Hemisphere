@@ -1,5 +1,8 @@
 package com.sip.ams.dto;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -8,20 +11,43 @@ import com.sip.ams.entities.Status;
 
 public class TasksDto {
 
-private Long task_id;
-	
-	private Integer task_type ;
-	
-	private Integer is_done ;
-	
-	
+	private Long task_id;
+
+	private Integer task_type;
+
+	private Integer is_done;
+
 	private Status status;
+
+	private Integer priority;
+
+	private double duration;
+
+	private String description;
+
+	 @Column(nullable = true) private LocalDateTime  start_date ;
+	  
+	  @Column(nullable = true) private LocalDateTime  end_date ;
+
 	
-	private Integer priority ;
+
 	
-	private double duration ;
-	
-	private  String description;
+
+	public LocalDateTime getStart_date() {
+		return start_date;
+	}
+
+	public void setStart_date(LocalDateTime start_date) {
+		this.start_date = start_date;
+	}
+
+	public LocalDateTime getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(LocalDateTime end_date) {
+		this.end_date = end_date;
+	}
 
 	public Long getTask_id() {
 		return task_id;
@@ -86,7 +112,5 @@ private Long task_id;
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	
-	
+
 }

@@ -52,11 +52,20 @@ public class SprintController {
 	@GetMapping("sprint/{project_id}")  
 	public List<SprintDto> getTasksBysprintId(@PathVariable Long project_id) 
 	{
-        return sprintservice.getSprintsByproject(project_id);
+		
+        List<SprintDto> list= sprintservice.getSprintsByproject(project_id);
+        System.out.println("date start"+list.get(1).getSprintsTask().get(4).getStart_date());
+        System.out.println("date start"+list.get(1).getSprintsTask().get(4).getDescription());
+
+        return list;
+        
 	}
 	
 	@PostMapping
 	public ResponseEntity<Sprint> saveproject(@RequestBody Sprint sprint) {
+		System.out.println("controller date start :"+sprint.getStart_date());
+		System.out.println("controller date end :"+sprint.getEnd_date());
+
         Sprint sprint1 = sprintservice.insert(sprint);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("sprint", "/sprint/" + sprint1.getSprint_id().toString());
