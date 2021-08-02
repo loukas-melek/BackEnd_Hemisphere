@@ -1,5 +1,8 @@
 package com.sip.ams.entities;
 
+import java.sql.Blob;
+import java.sql.Clob;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,7 +40,7 @@ public class Profile extends AuditModel {
 	    private String city;
 		
 		@Column(name = "profilePicUrl")
-	    private String profilePicUrl;	
+	    private String  profilePicUrl;	
 		
 		@Column(name = "gender")
 	    private boolean gender;
