@@ -20,7 +20,7 @@ import com.sip.ams.entities.Role;
 
 
 @SpringBootApplication
-public class HemisphereBackEndApplication implements CommandLineRunner{
+public class HemisphereBackEndApplication implements CommandLineRunner {
 	@Autowired
 	  UserService userService;
 	
@@ -35,6 +35,7 @@ public class HemisphereBackEndApplication implements CommandLineRunner{
 	  }
 	@Override
 	public void run(String... args) throws Exception {
+		
 		
 		
 		
@@ -69,6 +70,8 @@ public class HemisphereBackEndApplication implements CommandLineRunner{
 		 * pprofile.setLocation("Tunisia"); pprofile.setGender(false);
 		 * userService.signup(pUser,pprofile);
 		 */
+		 
+		 
 		 
 		 
 		

@@ -18,17 +18,17 @@ import com.sip.ams.entities.General_Post;
 @Repository("General_PostRepository")
 public interface General_PostRepository extends JpaRepository<General_Post, Long>{
 
-	@Query(value= "select * from General_Post WHERE General_Post.id= :id AND General_Post.archived=0", nativeQuery= true)
+	@Query(value= "select * from General_Post WHERE General_Post.id= :id AND General_Post.archived=false", nativeQuery= true)
 	public General_Post findPubById(@Param("id")Long id);
 	 
 	
-	@Query (value= "select * from General_Post WHERE General_Post.id_profile= :user_id AND General_Post.archived=0", nativeQuery= true )
+	@Query (value= "select * from General_Post WHERE General_Post.id_profile= :user_id AND General_Post.archived=false", nativeQuery= true )
 	public List<General_Post> getPubByUserId(@Param("user_id") Long user_id);
 	
-	@Query (value= "select * from General_Post WHERE General_Post.id_user= :user_id AND General_Post.archived=0", nativeQuery= true )
+	@Query (value= "select * from General_Post WHERE General_Post.id_user= :user_id AND General_Post.archived=false", nativeQuery= true )
 	public List<General_Post> getPubByReact(@Param("user_id") Long user_id);
 	
-	 @Query(value="select * from General_Post where General_Post.archived=0",nativeQuery=true) 
+	 @Query(value="select * from General_Post where General_Post.archived=false",nativeQuery=true) 
 	 public List<General_Post> listerAll();
 	
 	 

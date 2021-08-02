@@ -1,5 +1,9 @@
 package com.sip.ams.implementservice;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -29,8 +33,25 @@ public class ProfileServiceImp implements ProfileService {
 		// TODO Auto-generated method stub
 		profileRepository.save(profile);
 	}
+	public String writeToFile(String imageUrl, String Filename)  {
+	    
+		 String path= new String();
+		    BufferedWriter writer;
+			try {
+				writer = new BufferedWriter(new FileWriter(Filename));
+				   writer.write(imageUrl);
+			        File f = new File(Filename);
+			       path= f.getAbsoluteFile().toString();
+				    writer.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 return path;
+	}
+	
 	@Override
-	public Profile updateProfile(Long id, Profile profile) {
+	public Profile updateProfile(Long id, Profile profile)  {
 		Profile p = profileRepository.getOne(id);
 		if(p!=null) {
 		p.setAbout(profile.getAbout());
@@ -38,7 +59,8 @@ public class ProfileServiceImp implements ProfileService {
 		p.setInterests(profile.getInterests());
 		p.setLanguages(profile.getLanguages());
 		p.setLocation(profile.getLocation());
-		p.setProfilePicUrl(profile.getProfilePicUrl());
+		//p.setProfilePicUrl(profile.getProfilePicUrl());
+		p.setProfilePicUrl(writeToFile(profile.getProfilePicUrl(), profile.getEmail()));
 		p.setUpdated_at(new Date());
 		p.setCity(profile.getCity());
 		p.setPhone(profile.getPhone());
