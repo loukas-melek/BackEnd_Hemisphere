@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity(name="user_account")
 public class User {
 
   @Id

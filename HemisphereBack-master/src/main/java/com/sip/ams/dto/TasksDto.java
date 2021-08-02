@@ -19,7 +19,7 @@ public class TasksDto {
 
 	private Status status;
 
-	private Integer priority;
+//	private Integer priority;
 
 	private double duration;
 
@@ -81,13 +81,11 @@ public class TasksDto {
 //		this.status = status;
 //	}
 
-	public Integer getPriority() {
-		return priority;
-	}
-
-	public void setPriority(Integer priority) {
-		this.priority = priority;
-	}
+	/*
+	 * public Integer getPriority() { return priority; }
+	 * 
+	 * public void setPriority(Integer priority) { this.priority = priority; }
+	 */
 
 	public double getDuration() {
 		return duration;

@@ -60,6 +60,9 @@ public class Offer_Task_Solution {
 	@Column(name = "poste")
 	private String poste;
 
+	@Column(name = "image")
+    private String image;	
+	
 	@Column(name = "CATEGORIE")
 	@Enumerated(EnumType.STRING)
 	private CategorieOffer categorie;
@@ -98,6 +101,14 @@ public class Offer_Task_Solution {
 
 	public String getTitle() {
 		return title;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public void setTitle(String title) {
