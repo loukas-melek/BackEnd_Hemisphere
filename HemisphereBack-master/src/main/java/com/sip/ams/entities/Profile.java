@@ -1,6 +1,7 @@
 package com.sip.ams.entities;
 
 import java.sql.Blob;
+import java.sql.Clob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +40,7 @@ public class Profile extends AuditModel {
 	    private String city;
 		
 		@Column(name = "profilePicUrl")
-	    private Blob profilePicUrl;	
+	    private String  profilePicUrl;	
 		
 		@Column(name = "gender")
 	    private boolean gender;
@@ -130,11 +131,11 @@ public class Profile extends AuditModel {
 			this.about = about;
 		}
 
-		public Blob getProfilePicUrl() {
+		public String getProfilePicUrl() {
 			return profilePicUrl;
 		}
 
-		public void setProfilePicUrl(Blob profilePicUrl) {
+		public void setProfilePicUrl(String profilePicUrl) {
 			this.profilePicUrl = profilePicUrl;
 		}
 
