@@ -64,10 +64,13 @@ public class ProfileServiceImp implements ProfileService {
 		p.setName(profile.getName());
 		p.setLastname(profile.getLastname());
 		p.setState(profile.getState());
-		File file = new File(profile.getEmail()+".txt");
+		String dirName = "/home/ubuntu/Deploy Here/images/";
+
+		String  test = "C:\\Users\\loukas\\Desktop\\hemisphere\\";
+		File file = new File(dirName+profile.getEmail()+".txt");
 		try {
 		if(!file.exists()) {
-			
+			String path ="";
 				file.createNewFile();
 			}
 		p.setProfilePicUrl(file.getAbsolutePath());
