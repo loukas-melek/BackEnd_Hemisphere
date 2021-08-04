@@ -1,5 +1,7 @@
 package com.sip.ams.controllers;
 
+import java.io.FileNotFoundException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,7 @@ public class ProfileController {
 		profileService.addProfile(profile);
 	 }
 	@GetMapping("/user/{id}")
-	 public Profile getProfileByUserId(@PathVariable Integer id) {
+	 public Profile getProfileByUserId(@PathVariable Integer id) throws FileNotFoundException {
 	 return (Profile)profileService.findByUserId(id);
 	 }
 	@PutMapping("update/{profileId}")
