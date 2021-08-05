@@ -90,7 +90,7 @@ public class ProfileServiceImp implements ProfileService {
 		p.setName(profile.getName());
 		p.setLastname(profile.getLastname());
 		p.setState(profile.getState());
-		String dirName = "/home/ubuntu/images/";
+		String dirName = "/home/ubuntu/DeployHere/dist/assets/images/";
 
 		String  test = "C:\\Users\\loukas\\Desktop\\hemisphere\\front-master\\front-master\\src\\assets\\images\\";
 		File file = new File(dirName+profile.getEmail()+".txt");
@@ -105,8 +105,8 @@ public class ProfileServiceImp implements ProfileService {
 		System.out.println("Succss done!");
 		String path = ConvertToImage(profile.getProfilePicUrl(),dirName,profile.getEmail());
 		System.out.println("original path : --"+path);
-		p.setProfilePicUrl(path.substring(65));
-		p.setProfileTextUrl(path.substring(65).replace(".jpg", ".txt"));
+		p.setProfilePicUrl(path.substring(29));
+		p.setProfileTextUrl(path.substring(29).replace(".jpg", ".txt"));
 		System.out.println("adjuted path ** "+p.getProfilePicUrl());
 		}
 		catch (IOException e) {
