@@ -42,6 +42,9 @@ public class Profile extends AuditModel {
 		@Column(name = "profilePicUrl")
 	    private String  profilePicUrl;	
 		
+		@Column(name = "profileTextUrl")
+	    private String  profileTextUrl;	
+		
 		@Column(name = "gender")
 	    private boolean gender;
 		
@@ -66,6 +69,14 @@ public class Profile extends AuditModel {
 		private User user;
 		
 		
+
+		public String getProfileTextUrl() {
+			return profileTextUrl;
+		}
+
+		public void setProfileTextUrl(String profileTextUrl) {
+			this.profileTextUrl = profileTextUrl;
+		}
 
 		public String getEmail() {
 			return email;

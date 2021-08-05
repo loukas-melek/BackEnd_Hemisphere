@@ -10,7 +10,7 @@ import com.sip.ams.entities.Post;
 import com.sip.ams.entities.Profile;
 @Service
 public interface ProfileService {
-	Profile findByUserId( Integer id ) throws FileNotFoundException;
+	Profile findByUserId( Integer id ) ;
 	List<Profile> listerProfiles();
 	void addProfile(Profile profile);
 	Profile updateProfile(Long id,Profile profile);
