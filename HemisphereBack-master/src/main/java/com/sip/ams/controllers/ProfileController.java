@@ -37,7 +37,7 @@ public class ProfileController {
 		profileService.addProfile(profile);
 	 }
 	@GetMapping("/user/{id}")
-	 public Profile getProfileByUserId(@PathVariable Integer id) throws FileNotFoundException {
+	 public Profile getProfileByUserId(@PathVariable Integer id)  {
 	 return (Profile)profileService.findByUserId(id);
 	 }
 	@PutMapping("update/{profileId}")
